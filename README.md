@@ -16,13 +16,6 @@ CyberShelf is an innovative online storefront that revolutionizes the way custom
 ## Vision Statement
 For budget-conscious consumers seeking quality products online, CyberShelf is the ultimate online shopping destination, where affordability meets excellence. Our vision is to become the leading online storefront, redefining the way people shop in the digital age. Unlike other e-commerce platforms, CyberShelf is committed to providing an extensive range of products at prices that won't break the bank, ensuring that users can access the best deals on the internet.
 
-## Comunication Plan: 
-3308 group project server on Discord
-
-## Meeting Plan
-- weekly group meetings: 2:30 pm on Wednesdays on Discord
-- weekly TA meetings 9:45 on Mondays on Google Meets
-
 
 ## Frameworks We Used
 ...
