@@ -1,14 +1,14 @@
-<<<<<<< HEAD
-Decisions made:
-Alternative actions/options discussed
-Follow-up items
-=======
-Team Meeting Logs - The minutes of the meeting with your TA every week will be recorded in a file here. You will be updating the same file every week with the latest updates. Points to include in the minutes would be:
+Week 1 TA Meeting Log:
+
 3:00- Assign user stories to teammates
-5:00- Make use case diagram(Making it using Lucidchart)
-7:00-  Wireframes completed
-8:00- Docker Vs Git version control
-9:00- Deciding if EngineX is ok
-11:00-Required user stories amount (2-3)
-To do: Finish initial setup and begin code for the website, Wait for Sreetha to see if EngineX is ok
->>>>>>> faef7f65c53e15890c1e460eb46a04826fa3f793
+5:00- Make use case diagram (Making it using Lucidchart)
+7:00- Wireframes completed
+8:00- Docker vs. Git version control
+9:00- Deciding if NGINX is ok
+11:00- Required user stories amount (2-3)
+
+Descisions Made:
+- Git for version control, hosting remote repo on GitHub
+- Which pages we will be implementing for the website
+
+TODO: Finish initial setup and begin code for the website, Wait for Sreesha to give the OK for NGINX
