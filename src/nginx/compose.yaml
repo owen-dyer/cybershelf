@@ -1,0 +1,29 @@
+services:
+  nginx_proxy:
+    image: nginx
+    volumes:
+      - ./reverse_proxy.conf:/etc/nginx/conf.d/default.conf
+      - ../ui_service/public:/app/public
+    ports:
+      - "80:80"
+    networks:
+      - ui_service_frontend_network
+      - account_service_account_network
+      - auth_service_auth_network
+      - inventory_service_inventory_network
+      - cart_service_cart_network
+      - order_service_order_networks
+
+networks:
+  ui_service_frontend_network:
+    external: true
+  account_service_account_network:
+    external: true
+  auth_service_auth_network:
+    external: true
+  inventory_service_inventory_network:
+    external: true
+  cart_service_cart_network:
+    exteral: true
+  order_service_order_network:
+    external: true

@@ -1,0 +1,29 @@
+services:
+  account_database:
+    image: postgres
+    volumes:
+      - account_information:/var/lib/postgresql/data
+    networks:
+      - account_db_network
+    env_file:
+      - .development.env
+  account_server:
+    image: node:lts
+    volumes:
+      - ./:/home/node/app
+    networks:
+      - account_network
+      - account_db_network
+    env_file:
+      - .development.env
+    depends_on:
+      - account_database
+
+volumes:
+  account_information:
+
+networks:
+  account_network:
+    internal: true
+  account_db_network:
+    internal: true

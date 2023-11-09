@@ -1,0 +1,27 @@
+services:
+  order_database:
+    image: postgres
+    volumes:
+      - order_information:/var/lib/postgresql/data
+    networks:
+      - order_db_network
+    env_file:
+      - .development.env
+  order_server:
+    image: node:lts
+    volumes:
+      - ./:/home/node/app
+    networks:
+      - order_network
+      - order_db_network
+    env_file:
+      - .development.env
+
+volumes:
+  order_information:
+
+networks:
+  order_network:
+    internal: true
+  order_db_network:
+    internal: true
