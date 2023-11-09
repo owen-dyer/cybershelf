@@ -21,7 +21,7 @@ Team CyberShelf
     - Email: lete1842@colorado.edu
 - Ashton Wilbern
     - GitHub Username: awilbern52
-    - Email: Ashton.Wilbern@colorado.edu
+    - Email: aswi7205@colorado.edu
 
 ## Application Name
 CyberShelf
