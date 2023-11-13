@@ -1,0 +1,27 @@
+services:
+  cart_database:
+    image: postgres
+    volumes:
+      - cart_inventory:/var/lib/postgresql/data
+    networks:
+      - cart_db_network
+    env_file:
+      - .development.env
+  cart_server:
+    image: node:lts
+    volumes:
+      - ./:/home/node/app
+    networks:
+      - cart_network
+      - cart_db_network
+    env_file:
+      - .development.env
+
+volumes:
+  cart_inventory:
+
+networks:
+  cart_network:
+    internal: true
+  cart_db_network:
+    internal: true
