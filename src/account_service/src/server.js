@@ -7,7 +7,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views/"));
 
 app.get("/account/settings", (req, res) => {
-  res.render("pages/account_settings");
+  res.render("pages/settings");
 });
 
 // This is a catch-all route. If none of the routes above get hit then this will return a 404

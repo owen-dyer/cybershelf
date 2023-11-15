@@ -6,8 +6,9 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views/"));
 
+// Return an overview of all inventory (definitely not a good thing for production but for our use case right now this is fine)
 app.get("/inventory", (req, res) => {
-  res.render("pages/index");
+  res.render("pages/all");
 });
 
 app.get("*", (req, res) => {
