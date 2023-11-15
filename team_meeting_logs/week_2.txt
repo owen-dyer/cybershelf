@@ -1,0 +1,9 @@
+2-Monolith-based service structure discussion
+3- The group is learning Monolith and browsing through writeups to become more familiar with the structure
+4- Using Mocha and Chai with Monolith structure and UAT has been created
+8 - Leo is working on ssh issues learning monolith writeups 
+9- Jordan  and Celia working on test cases
+10- Dividing test cases everyone worked on UAT
+11- Decide user stories this week now that we all have familiarity
+12- More setup to EngineX api by Owen
+Not stuck anywhere Assign user stories so everyone can have clear understanding of what they are working on
