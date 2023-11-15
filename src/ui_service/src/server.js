@@ -1,4 +1,3 @@
-const axios = require("axios");
 const express = require("express");
 const path = require("path");
 
@@ -8,7 +7,6 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views/"));
 
 app.get("/", (req, res) => {
-  console.log(`Frontend Referrer: ${req.headers.referer}`);
   res.render("pages/index");
 });
 
@@ -17,5 +15,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("Frontend application is running");
+  console.log("UI Server is running");
 });

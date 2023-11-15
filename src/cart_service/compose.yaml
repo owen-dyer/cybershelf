@@ -9,19 +9,22 @@ services:
       - .development.env
   cart_server:
     image: node:lts
+    working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
     networks:
-      - cart_network
+      - cart_server_network
       - cart_db_network
     env_file:
       - .development.env
+    # This service doesn't depend on the cart database like others depend on their database, because ideally, if the database was down, people could still add items to their cart and they could temporarily be stored in cookies
+    command: "npm start"
 
 volumes:
   cart_inventory:
 
 networks:
-  cart_network:
+  cart_server_network:
     internal: true
   cart_db_network:
     internal: true

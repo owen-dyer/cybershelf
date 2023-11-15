@@ -5,9 +5,8 @@ services:
     volumes:
       - ./:/home/node/app
     networks:
-      - frontend_network
+      - ui_server_network
     command: "npm start"
 
 networks:
-  frontend_network:
-    internal: true
+  ui_server_network:

@@ -1,0 +1,23 @@
+<%- include ('../components/header') %>
+
+<h1>UI Service Index Page</h1>
+
+<!-- We are going to inject the data into the div -->
+<div id="account"></div>
+
+<script>
+  // This is an example of how to inject the content returned from a request into the page (without refreshing)
+  $.ajax({
+    url: "/account/settings",
+    type: "GET",
+    dataType: "html",
+    success: function (data) {
+      $("#account").html(data);
+    },
+    error: function (error) {
+      $("#account").html(error);
+    },
+  });
+</script>
+
+<%- include ('../components/footer') %>

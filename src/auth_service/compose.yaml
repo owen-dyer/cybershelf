@@ -1,19 +1,16 @@
-include:
-  - ../user_service/compose.yaml
-
 services:
   auth_server:
-  image: node:lts
-  volumes:
-    - ./:/home/node/app
-  networks:
-    - auth_network
-    - account_network
-  depends_on:
-    - user_server
+    image: node:lts
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    networks:
+      - auth_server_network
+      - account_service_account_server_network
+    command: "npm start"
 
 networks:
-  auth_network:
+  auth_server_network:
     internal: true
-  account_service_account_network:
+  account_service_account_server_network:
     external: true
