@@ -9,7 +9,7 @@ services:
       - "80:80"
     networks:
       - ui_service_ui_server_network
-      - account_service_account_server_network
+      # - account_service_account_server_network
       # - auth_service_auth_server_network
       # - inventory_service_inventory_server_network
       # - cart_service_cart_server_network
@@ -20,8 +20,8 @@ networks:
   # If you are going to add a service in, run that service first so that the network is created, then run NGINX
   ui_service_ui_server_network:
     external: true
-  account_service_account_server_network:
-    external: true
+  # account_service_account_server_network:
+  #   external: true
   # auth_service_auth_server_network:
   #   external: true
   # inventory_service_inventory_server_network:
