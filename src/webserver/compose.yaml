@@ -1,17 +1,16 @@
 services:
-  auth_server:
+  webserver:
     image: node:lts
     working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
     networks:
-      - auth_server_network
+      - webserver_network
       - account_service_account_server_network
     command: "npm start"
-    # command: "npm run testandrun"
 
 networks:
-  auth_server_network:
-    internal: true
+  webserver_network:
+  # TODO: Check that everything works fine when this network is removed
   account_service_account_server_network:
     external: true

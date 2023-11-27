@@ -1,8 +1,10 @@
 CREATE TABLE abstract_user (
     id SERIAL PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NULL, -- Normally NOT NULL but NULL for development purposes
+    name VARCHAR(100) NOT NULL,
+    -- Changing to a single full name field for now
+    -- first_name VARCHAR(100) NOT NULL,
+    -- last_name VARCHAR(100) NULL, -- Normally NOT NULL but NULL for development purposes
     password_hash VARCHAR(256) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     last_login TIMESTAMP NULL

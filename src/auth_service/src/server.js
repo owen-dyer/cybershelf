@@ -14,8 +14,15 @@ app.use(
   })
 );
 
-const login = require("./app/login");
-app.use(login);
+// const login = require("./app/login");
+// app.use(login);
+
+app.get("/auth", (req, res) => {
+  console.log("Authorization request received");
+  return res.status(200).json({
+    message: "Authorized"
+  });
+});
 
 // This is a catch-all route. If none of the routes above get hit then this will return a 404
 app.get("*", (req, res) => {

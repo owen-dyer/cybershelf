@@ -20,8 +20,8 @@ services:
       - .development.env
     depends_on:
       - account_database
-    # command: "npm start"
-    command: "npm run testandrun"
+    command: "npm start"
+    # command: "npm run testandrun"
 
 volumes:
   account_information:
