@@ -1,0 +1,14 @@
+Week 2 TA Meeting Log:
+
+Topics Discussed:
+- Time spent understanding the structure
+- Individual contributions
+- Group contributions
+
+Decisions Made:
+- This week will be spent organizing and getting started on the project
+    now that we understand the structure 
+
+TODO:
+- Assign user stories
+- Get started developing UI and databases
