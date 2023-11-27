@@ -4,13 +4,13 @@ services:
     working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
-    networks:
-      - auth_server_network
-      - account_service_account_server_network
-    command: "npm start"
+    # networks:
+    #   - auth_server_network
+    #   - account_service_account_server_network
+    command: "npm run testandrun"
 
-networks:
-  auth_server_network:
-    internal: true
-  account_service_account_server_network:
-    external: true
+# networks:
+#   auth_server_network:
+#     internal: true
+#   account_service_account_server_network:
+#     external: true
