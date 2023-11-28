@@ -23,10 +23,7 @@ describe('Server!', () => {
       });
   });
 
-  // ===========================================================================
-  // TO-DO: Part A Login unit test case
-  //We are checking POST /add_user API by passing the user info in the correct order. This test case should pass and return a status 200 along with a "Success" message.
-//Positive cases
+ 
 //Checking get in order to display products added to cart taken from database
 it('positive : /add_to_cart', done => {
     chai
@@ -42,7 +39,7 @@ it('positive : /add_to_cart', done => {
 it('Negative : /checkout. Checking invalid checkout', done => {
     chai
       .request(server)
-      .post('/ad)
+      .post('/checkout)
       .send({id: '5', name: 10, dob: '2020-02-20'})
       .end((err, res) => {
         expect(res).to.have.status(200);
