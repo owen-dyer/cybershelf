@@ -3,27 +3,30 @@ services:
     image: nginx
     volumes:
       - ./reverse_proxy.conf:/etc/nginx/conf.d/default.conf
-      - ../ui_service/public:/app/public
+      - ../ui_service/public:/app/public # This looks in the public folder in the ui service app for static files (css, js, html, etc.)
+      # You can add more paths here so that docker looks for files in their public folders (e.g. '../account_service/public')
     ports:
       - "80:80"
     networks:
-      - ui_service_frontend_network
-      - account_service_account_network
-      - auth_service_auth_network
-      - inventory_service_inventory_network
-      - cart_service_cart_network
-      - order_service_order_networks
+      - ui_service_ui_server_network
+      # - account_service_account_server_network
+      # - auth_service_auth_server_network
+      # - inventory_service_inventory_server_network
+      # - cart_service_cart_server_network
+      # - order_service_order_server_network
 
 networks:
-  ui_service_frontend_network:
+  # If a service has never been run, comment out the network here and above under 'networks'
+  # If you are going to add a service in, run that service first so that the network is created, then run NGINX
+  ui_service_ui_server_network:
     external: true
-  account_service_account_network:
-    external: true
-  auth_service_auth_network:
-    external: true
-  inventory_service_inventory_network:
-    external: true
-  cart_service_cart_network:
-    exteral: true
-  order_service_order_network:
-    external: true
+  # account_service_account_server_network:
+  #   external: true
+  # auth_service_auth_server_network:
+  #   external: true
+  # inventory_service_inventory_server_network:
+  #   external: true
+  # cart_service_cart_server_network:
+  #   exteral: true
+  # order_service_order_server_network:
+  #   external: true
