@@ -6,7 +6,17 @@ router.use((req, res, next) => {
 });
 
 router.route("/").get((req, res, next) => {
-  res.render("pages/categories");
+  res.status(200).json({
+    // This should be filled by a db query
+    categories: [
+      "Home Supplies",
+      "Office Supplies",
+      "Outdoor Equipment",
+      "Cleaning Supplies",
+      "Storage",
+      "Decoration",
+    ],
+  });
 });
 
 module.exports = router;
