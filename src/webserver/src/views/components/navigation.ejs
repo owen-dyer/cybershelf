@@ -68,20 +68,22 @@
       <% if (locals.authenticated) { %>
       <button
         id="account-menu-select"
-        class="bg-white text-gray-800 text-lg <%= locals.authenticated ? 'block' : 'hidden' %>"
+        class="bg-blue-600 text-gray-100 rounded-md text-lg px-4 py-1.5 <%= locals.authenticated ? 'block' : 'hidden' %>"
         popovertarget="account-menu"
       >
-        Welcome, <%= locals.name %>
+        Account
       </button>
+      <!-- Custom select menu (should make a custom component for this) -->
       <%- include ('../components/popover', {popover_id: "account-menu",
       position: "attached"}) %> <% } %>
       <button
         id="show-signin-form"
         class="bg-blue-600 text-gray-100 rounded-md text-lg px-4 py-1.5 <%= locals.authenticated ? 'hidden' : 'block' %>"
-        onclick="renderRemoteContent('/login', 'modal-content')"
+        onclick="$('#modal-content').load('/signin')"
       >
         Sign In
       </button>
+      <!-- onclick="renderRemoteContent('/login', 'modal-content')" -->
     </div>
   </div>
   <%- include ('../components/popover', {popover_id: "categories-popover"}) %>
@@ -102,4 +104,18 @@
     mobileMenuOpen.classList.toggle("hidden", mobileMenuState);
     mobileMenuClose.classList.toggle("hidden", !mobileMenuState);
   };
+</script> -->
+
+<!-- Just for tesing -->
+<!-- <script>
+  $.ajax({
+    url: "/categories",
+    method: "GET",
+    success: (data) => {
+      $("#categories-popover").html(data);
+    },
+    error: (err) => {
+      $("#categories-popover").html(err);
+    },
+  });
 </script> -->

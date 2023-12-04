@@ -5,18 +5,13 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./conf.d:/etc/nginx/conf.d
       - ./njs:/etc/nginx/njs
-      # This looks in the public folder in the webserver app for static files (css, js, html, etc.)
-      # Note: These ideally wouldn't be setup like this but rather the proxy would call to each of the services and cache it's static files at runtime but for development this is fine
-      # - ../webserver/public:/app/public
-      # - ../webserver/public:/app/public/webserver
-      # - ../account_service/public/js:/app/public/account
     ports:
       - "80:80"
     networks:
       - webserver_webserver_network
       - account_service_account_server_network
       - auth_service_auth_server_network
-      # - inventory_service_inventory_server_network
+      - inventory_service_inventory_server_network
       # - cart_service_cart_server_network
       - order_service_order_server_network
 
@@ -29,8 +24,8 @@ networks:
     external: true
   auth_service_auth_server_network:
     external: true
-  # inventory_service_inventory_server_network:
-  #   external: true
+  inventory_service_inventory_server_network:
+    external: true
   # cart_service_cart_server_network:
   #   exteral: true
   order_service_order_server_network:

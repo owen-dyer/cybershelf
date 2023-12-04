@@ -12,6 +12,7 @@ const signInHandler = (fields) => {
         id_token: successResponse.id_token,
       },
       success: (data) => {
+        closeModal(modalElement);
         // Change sign in button to sign out button since authentication was successful
         // $("#show-signin-form")
         //   .off()
@@ -22,8 +23,9 @@ const signInHandler = (fields) => {
 
         // The endpoint re-renders some UI components since the UI for authenticated users is slightly different
         // than that of non-authenticated users and we inject those changes into the page
-        $("body header").replaceWith(data);
+        $("body header").replaceWith(data.template);
         // Need to figure this out since name isn't being sent right now due to rendering
+        console.log(data.name);
         createToastNotification("success", `Welcome, ${data.name}`);
       },
       error: (err) => {
@@ -38,7 +40,7 @@ const signInHandler = (fields) => {
   };
 
   $.ajax({
-    url: "/login",
+    url: "http://api.localhost/signin",
     type: "POST",
     data: fields,
     dataType: "json",
@@ -52,10 +54,10 @@ const signInHandler = (fields) => {
       // Probably better to include all scripts into one file on the server but that can be done later
 
       // TODO: Add transition out of this
-      closeModal(modalElement);
     },
     error: (err) => {
       console.log("Failed to sign in");
+      console.log(err);
       // TODO: Show toast notification with error message (filtered by the backend)
     },
   });

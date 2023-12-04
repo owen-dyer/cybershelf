@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { getPublicKeys } = require("./public_keys");
 const jwt = require("jsonwebtoken");
+const { app } = require("./app");
 
 router.use((req, res, next) => {
   next();
@@ -21,17 +22,27 @@ router.route("/").post((req, res, next) => {
   // Should be roughly one hour
   const elapsed = exp - now;
 
-  res
-    .status(200)
-    .cookie("id_token", id_token, {
-      maxAge: elapsed * 1000, // Since elapsed is in seconds we need to multiple by 1000 to get milliseconds since maxAge is in milliseconds
-    })
-    // Could replace this with only rendering the navigation I think
-    // Everything else on the page should be injected dynamically
-    .render("pages/partial_index", {
+  // res.render automatically sends the html but we want to send the html and some json data
+  // so we call app.render and then manually send the html
+  app.render(
+    "components/navigation",
+    {
       authenticated: true,
       name: decoded.name,
-    });
+    },
+    (err, html) => {
+      console.log(html);
+      res
+        .status(200)
+        .cookie("id_token", id_token, {
+          maxAge: elapsed * 1000,
+        })
+        .json({
+          name: decoded.name,
+          template: html,
+        });
+    }
+  );
 });
 
 module.exports = router;

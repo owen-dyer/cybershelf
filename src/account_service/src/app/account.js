@@ -9,8 +9,9 @@ router.use((req, res, next) => {
 });
 
 router.route("/").get((req, res, next) => {
-  res.render("pages/dashboard", {
-    title: "Account Dashboard",
+  res.status(200).json({
+    status: "success",
+    message: "Account settings response",
   });
 });
 

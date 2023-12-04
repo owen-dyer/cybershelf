@@ -1,4 +1,4 @@
-async function setPublicKey(s) {
+async function setPublicKeys(s) {
   const reply = await ngx.fetch("http://account_server:3000/public_key");
   const body = await reply.text();
   const publicKey = JSON.parse(body).public_key;
@@ -19,5 +19,5 @@ async function setPublicKey(s) {
 }
 
 export default {
-  setPublicKey,
+  setPublicKeys,
 };

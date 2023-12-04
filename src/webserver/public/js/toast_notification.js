@@ -1,28 +1,26 @@
 // TODO: Style toast notifications and make them more robust
 const createToastNotification = (status, content) => {
-  const toastNotification = document.createElement("div");
-  toastNotification.popover = "manual";
-  toastNotification.classList.add("w-full", "h-full", "bg-transparent");
-
-  const toastNotificationContent = document.createElement("div");
+  const popover = document.createElement("div");
+  popover.popover = "manual";
+  popover.classList.add(
+    "popover-open:absolute",
+    "popover-open:inset-unset",
+    "popover-open:bottom-0",
+    "popover-open:right-0"
+  );
 
   if (status === "success") {
-    toastNotificationContent.classList.add("bg-green-500");
+    popover.classList.add("bg-green-500");
   } else if (status === "error") {
-    toastNotificationContent.classList.add("bg-red-500");
+    popover.classList.add("bg-red-500");
   }
 
-  toastNotificationContent.classList.add("absolute", "bottom-0", "right-0");
-  toastNotificationContent.textContent = content;
-  toastNotification.appendChild(toastNotificationContent);
+  popover.textContent = content;
+  document.body.appendChild(popover);
+  popover.showPopover();
 
-  document.body.appendChild(toastNotification);
-
-  toastNotification.showPopover();
-
-  // 4 second timeout before notification is automatically removed
   setTimeout(() => {
-    toastNotification.hidePopover();
-    toastNotification.remove();
+    popover.hidePopover();
+    popover.remove();
   }, 4000);
 };

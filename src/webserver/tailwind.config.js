@@ -6,16 +6,20 @@ module.exports = {
     "./src/**/*.{js,ejs}",
     "./public/**/*.js",
     "../account_service/src/views/**/*.ejs",
+    "../inventory_service/src/views/**/*.ejs",
   ],
   theme: {
     extend: {
       screens: {
-        "xs": "480px",
+        xs: "480px",
       },
       width: {
-        "88": "22rem",
-        "112": "28rem",
-      }
+        88: "22rem",
+        112: "28rem",
+      },
+      inset: {
+        unset: "unset",
+      },
     },
   },
   plugins: [

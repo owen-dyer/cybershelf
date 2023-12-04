@@ -1,9 +1,11 @@
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const express = require("express");
+// const express = require("express");
 const path = require("path");
 
-const app = express();
+// const app = express();
+
+const { app, express } = require("./app/app");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views/"));
@@ -21,6 +23,7 @@ app.use("/", require("./app/index"));
 app.use("/verifyidtoken", require("./app/verify_id_token"));
 app.use("/webserver/public_keys", require("./app/public_keys").router);
 app.use("/static", express.static(path.join(__dirname, "../public")));
+app.use(require("./routes/account"));
 // TODO: Add to static route
 app.use(
   "/jquery",

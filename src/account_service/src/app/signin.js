@@ -8,17 +8,12 @@ const router = express.Router();
 const createIdToken = require("./create_id_token");
 
 router.use((req, res, next) => {
-  console.log(`Login request received at ${new Date().toUTCString()}`);
+  console.log(`Signin request received at ${new Date().toUTCString()}`);
   next();
 });
 
 router
   .route("/")
-  // GUI for account verification during developement (remove during production)
-  .get((req, res, next) => {
-    console.log("Sending login form");
-    return res.render("pages/login");
-  })
   // Potentially move some of this logic to the auth server so that this service only verifies that credentials are valid and the auth service does everything else
   .post((req, res, next) => {
     const userObj = {
