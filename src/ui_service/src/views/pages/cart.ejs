@@ -1,5 +1,47 @@
 <%- include ('../components/header') %>
 <%- include ('../components/menu') %>
 
+<h2> Cart </h2>
+
+<div class="cart">
+    <table class="table">
+        <thead>
+          <tr>
+            <th class="col-1">#</th>
+            <th class="col-4">Item</th>
+            <th class="col-2">Price</th>
+            <th class="col-1">Quantity</th>
+            <th class="col-2"></th>
+            <th class="col-1">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Travel Mug</td>
+            <td>8.99</td>
+            <td><input type="text" name="quantity" class="form-control" id="quantity" required></td>
+            <td></td>
+            <td>8.99</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>4-Foot Charging Cord</td>
+            <td>5.99</td>
+            <td><input type="text" name="quantity" class="form-control" id="quantity" required></td>
+            <td></td>
+            <td>11.98</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Portable Charger</td>
+            <td>17.99</td>
+            <td><input type="text" name="quantity" class="form-control" id="quantity" required></td>
+            <td></td>
+            <td>17.99</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 
 <%- include ('../components/footer') %>
