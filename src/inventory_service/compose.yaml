@@ -13,7 +13,7 @@ services:
     volumes:
       - ./:/home/node/app
     networks:
-      - inventory_network
+      - inventory_server_network
       - inventory_db_network
     env_file:
       - .development.env
@@ -25,7 +25,7 @@ volumes:
   store_inventory:
 
 networks:
-  inventory_network:
+  inventory_server_network:
     internal: true
   inventory_db_network:
     internal: true

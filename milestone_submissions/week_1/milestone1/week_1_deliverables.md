@@ -21,7 +21,7 @@ Team CyberShelf
     - Email: lete1842@colorado.edu
 - Ashton Wilbern
     - GitHub Username: awilbern52
-    - Email: Ashton.Wilbern@colorado.edu
+    - Email: aswi7205@colorado.edu
 
 ## Application Name
 CyberShelf
@@ -41,8 +41,7 @@ git repository: https://github.com/owen-dyer/cybershelf/tree/main
 Agile Methodology
 
 ## Comunication Plan: 
-3308 group project server on Discord
-Our team will be having our weekly meetings on Discord. Also, we will meet with our TA, Bhoomika, via Google Meets each week.
+Our team will be having our weekly meetings and communicate via Discord on our 3308 Group Project Server. Also, we will meet with our TA, Bhoomika, via Google Meets each week.
 
 ## Meeting Plan
 - Weekly Group Meeting: 2:30 p.m. on Wednesdays via Discord

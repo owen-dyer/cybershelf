@@ -1,0 +1,36 @@
+<%- include ('../components/header') %>
+<%- include ('../components/menu') %>
+
+  <div class="row">
+      <div class="col-md-3 border-right">
+        <!-- <img src="./images/profile_pic.jpg"> -->
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="120px" src="https://th.bing.com/th/id/OIP.S171c9HYsokHyCPs9brbPwHaGP?rs=1&pid=ImgDetMain" alt=""><span class="font-weight-bold">Jordan Okada</span><span class="text-black-50">jook@colorado.edu</span><span> </span></div>
+      </div>
+      <div class="col-md-5 border-right">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="text-right">Edit Profile</h4>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-md-6"><label class="labels">First Name</label><input id="first_name" type="text" class="form-control" placeholder="first name" value=""></div>
+                  <div class="col-md-6"><label class="labels">Last Name</label><input id="last_name" type="text" class="form-control" value="" placeholder="last name"></div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels">Address</label><input id="address" type="text" class="form-control" placeholder="enter address" value=""></div>
+                  <div class="col-md-12"><label class="labels">Zipcode</label><input id="zipcode" type="text" class="form-control" placeholder="enter zipcode" value=""></div>
+                  <div class="col-md-12"><label class="labels">City</label><input id="city" type="text" class="form-control" placeholder="enter city" value=""></div>
+                  <div class="col-md-12"><label class="labels">State</label><input id="state" type="text" class="form-control" placeholder="enter state" value=""></div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels">Phone Number</label><input id="phone" type="text" class="form-control" placeholder="enter phone number" value=""></div>
+                  <div class="col-md-12"><label class="labels">Email Address</label><input id="email" type="text" class="form-control" placeholder="enter email address" value=""></div>
+                </div>
+                </div>
+              <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+
+<%- include ('../components/footer') %>
