@@ -1,0 +1,25 @@
+<%- include ('../components/header') %>
+<%- include ('../components/menu') %>
+
+<main>
+  <div class="container">
+    <form action="/register" method="POST"> <!-- Form for user registration -->
+      <div class="mb-3">
+        <div>
+          <h2>Register</h2>
+        </div>
+        <div>
+          <label for="username" class="form-label">Username</label>
+          <input type="text" name="username" class="form-control" id="username" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
+</main>
+
+<%- include ('../components/footer') %>

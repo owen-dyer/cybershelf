@@ -9,19 +9,23 @@ services:
       - .development.env
   order_server:
     image: node:lts
+    working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
     networks:
-      - order_network
+      - order_server_network
       - order_db_network
     env_file:
       - .development.env
+    depends_on:
+      - order_database
+    command: "npm start"
 
 volumes:
   order_information:
 
 networks:
-  order_network:
+  order_server_network:
     internal: true
   order_db_network:
     internal: true
