@@ -33,6 +33,10 @@ app.get("/account", (req, res) => {
   res.render("pages/account");
 });
 
+app.get("/about", (req,res) => {
+  res.render("pages/about");
+})
+
 app.get("*", (req, res) => {
   res.status(404).render("pages/error/404");
 });
