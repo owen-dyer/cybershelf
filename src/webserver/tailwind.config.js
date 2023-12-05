@@ -26,7 +26,6 @@ module.exports = {
     require("@tailwindcss/forms"),
     ({ addVariant }) => {
       addVariant("popover-open", "&:popover-open");
-      addVariant("popover-backdrop", "&::backdrop"); // Might not need this
     },
   ],
 };

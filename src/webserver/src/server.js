@@ -1,9 +1,6 @@
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-// const express = require("express");
 const path = require("path");
-
-// const app = express();
 
 const { app, express } = require("./app/app");
 
@@ -18,6 +15,7 @@ app.use(
     extended: true,
   })
 );
+
 // Custom middleware
 app.use("/", require("./app/index"));
 app.use("/verifyidtoken", require("./app/verify_id_token"));

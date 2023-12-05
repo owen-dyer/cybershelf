@@ -1,11 +1,14 @@
-<!-- Custom select menu using Popover API -->
-<div id="select-container">
-  <button popovertarget="select-menu">Select</button>
-  <div popover id="select-menu" class="absolute flex border border-gray-300" >
-    <!-- Inject content into here but static for now -->
+<div id="select-container" class="relative w-fit">
+  <button id="select-menu-button" class="<%- locals.select_button_style %>">
+    <%= locals.select_button_label %>
+  </button>
+  <dialog
+    id="select-menu"
+    class="absolute rounded-lg px-4 py-1.5 bg-gray-100 open:flex open:flex-col"
+  >
     <a href="#">Item 1</a>
     <a href="#">Item 2</a>
     <a href="#">Item 3</a>
-    <a href="#">Item 4</a>
-  </div>
+    <button id="signout-button" class="text-sm text-red-500">Sign Out</button>
+  </dialog>
 </div>

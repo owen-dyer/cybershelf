@@ -17,8 +17,8 @@ Claims to include:
     *Maybe some other stuff but this is fine for now*
 */
 
-const createIdToken = (claims) => {
-  const token = jwt.sign(
+const createIdToken = async (claims, callback) => {
+  jwt.sign(
     {
       iss: "account_server", // Should be some ID or something ideally
       sub: claims.id, // Abstract user ID stored in the database
@@ -31,9 +31,14 @@ const createIdToken = (claims) => {
     {
       algorithm: "RS256",
       expiresIn: "1hr", // How long the token is valid for (e.g. 1 hour)
+    },
+    (err, token) => {
+      callback({
+        token: token,
+        error: err,
+      });
     }
   );
-  return token;
 };
 
 module.exports = createIdToken;

@@ -1,8 +1,9 @@
 const express = require("express");
-const router = express.Router();
 const { getPublicKeys } = require("./public_keys");
 const jwt = require("jsonwebtoken");
 const { app } = require("./app");
+
+const router = express.Router();
 
 router.use((req, res, next) => {
   next();
@@ -31,7 +32,6 @@ router.route("/").post((req, res, next) => {
       name: decoded.name,
     },
     (err, html) => {
-      console.log(html);
       res
         .status(200)
         .cookie("id_token", id_token, {

@@ -66,16 +66,8 @@
       <%- include ('../components/search') %>
       <!-- If user is authenticated render the account settings/profile menu -->
       <% if (locals.authenticated) { %>
-      <button
-        id="account-menu-select"
-        class="bg-blue-600 text-gray-100 rounded-md text-lg px-4 py-1.5 <%= locals.authenticated ? 'block' : 'hidden' %>"
-        popovertarget="account-menu"
-      >
-        Account
-      </button>
-      <!-- Custom select menu (should make a custom component for this) -->
-      <%- include ('../components/popover', {popover_id: "account-menu",
-      position: "attached"}) %> <% } %>
+      <%- include ('../components/select_menu', {select_button_label: locals.name, select_button_style: "bg-blue-600 text-gray-100 rounded-md text-lg px-4 py-1.5", select_style: "flex flex-col px-4 py-1.5"}) %>
+      <% } %>
       <button
         id="show-signin-form"
         class="bg-blue-600 text-gray-100 rounded-md text-lg px-4 py-1.5 <%= locals.authenticated ? 'hidden' : 'block' %>"
@@ -83,12 +75,12 @@
       >
         Sign In
       </button>
-      <!-- onclick="renderRemoteContent('/login', 'modal-content')" -->
     </div>
   </div>
-  <%- include ('../components/popover', {popover_id: "categories-popover"}) %>
-  <%- include ('../components/popover', {popover_id: "mobile-menu"}) %> <%-
-  include ('../components/modal') %>
+  <!-- Formatting this breaks it... -->
+  <%- include ('../components/popover', {popover_id: "categories-popover", popover_class: "bg-white max-w-7xl w-full border-b border-gray-200 popover-open:absolute popover-open:inset-unset popover-open:top-[3.75rem] popover-open:left-1/2 popover-open:-translate-x-1/2 popover-open:p-4"}) %>
+  <%- include ('../components/popover', {popover_id: "mobile-menu"}) %>
+  <%- include ('../components/modal') %>
 </header>
 <!-- TODO: Add basic functionality to modal and make universal so any content can be inserted into it -->
 

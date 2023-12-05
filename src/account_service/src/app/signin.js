@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("../database/init");
 const { verifyCredentialsQuery } = require("../database/queries");
+const bcrypt = require("bcrypt");
 
 const router = express.Router();
 
@@ -12,35 +13,48 @@ router.use((req, res, next) => {
   next();
 });
 
-router
-  .route("/")
-  // Potentially move some of this logic to the auth server so that this service only verifies that credentials are valid and the auth service does everything else
-  .post((req, res, next) => {
-    const userObj = {
-      email: req.body.email,
-      password: req.body.password,
-    };
+const signin = async (credentials, callback) => {
+  await db
+    .one(verifyCredentialsQuery, credentials.email)
+    .then((user) => {
+      bcrypt.compare(
+        credentials.password,
+        user.password_hash,
+        (err, result) => {
+          if (result !== true) {
+            // Invalid password but don't want to give too descriptive of an error message
+            // FIXME: This error should be caught by the catch statement below
+            // but instead the application crashes
+            // throw Error("Invalid username or password");
+            return callback({
+              success: false,
+              error: "Invalid username or password",
+            });
+          }
 
-    db.one(verifyCredentialsQuery, userObj.email)
-      .then((obj) => {
-        if (obj.password_hash === userObj.password) {
-          return res.status(201).json({
-            status: "success",
-            id_token: createIdToken({
-              id: obj.id,
-              name: obj.name,
-            }),
-          });
+          createIdToken(
+            {
+              id: user.id,
+              name: user.name,
+            },
+            (obj) => {
+              return callback({
+                success: obj.error ? false : true,
+                token: obj.token,
+                error: obj.error,
+              });
+            }
+          );
         }
-        throw Error("Invalid username or password");
-      })
-      .catch((e) => {
-        // TODO: Implement PGP error handling using error codes, etc.
-        return res.status(401).json({
-          status: "Authentication failed",
-          error: e.message || e,
-        });
+      );
+    })
+    .catch((err) => {
+      // TODO: Implement PGP error handling using error codes, etc.
+      return callback({
+        success: false,
+        error: err,
       });
-  });
+    });
+};
 
-module.exports = router;
+module.exports = signin;

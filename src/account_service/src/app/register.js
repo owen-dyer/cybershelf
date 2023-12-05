@@ -1,46 +1,42 @@
-const express = require("express");
 const db = require("../database/init");
 const { createUserQuery } = require("../database/queries");
-const router = express.Router();
+const bcrypt = require("bcrypt");
 
-router.use((req, res, next) => {
-  console.log(`Register request received at ${new Date().toUTCString()}`);
-  next();
-});
-
-router.route("/").post((req, res, next) => {
-  console.log(`Email: ${req.body.email}`);
-
-  // Bcrypt won't work for some reason so not implementing it for now...
-  //   const passwordHash = await bcrypt.hash(req.body.password, 10);
-
-  const userObj = {
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    confirmPassword: req.body.confirmpassword,
-  };
-
-  // Server-side check to make sure that they are the same since the client-side check and be bypassed
-  if (userObj.password !== userObj.confirmPassword) {
-    return res.status(401).json({
-      message: "The password and password confirmation fields do not match",
+const register = async (accountInformation, callback) => {
+  if (accountInformation.password !== accountInformation.confirmpassword) {
+    return callback({
+      success: false,
+      error: "Password and Confirm Password do not match",
     });
   }
 
-  db.one(createUserQuery, [userObj.email, userObj.name, userObj.password])
-    .then((ret) => {
-      console.log(`Successfully created user ${ret.email}`);
-      return res.status(200).json({
-        email: ret.email,
+  bcrypt.hash(accountInformation.confirmpassword, 10, (err, hash) => {
+    if (err) {
+      return callback({
+        success: false,
+        error: err,
       });
-    })
-    .catch((e) => {
-      console.log(`Failed to create user. ${e.message || e}`);
-      return res.status(500).json({
-        error: e.message || e,
-      });
-    });
-});
+    }
 
-module.exports = router;
+    console.log(hash);
+    db.one(createUserQuery, [
+      accountInformation.email,
+      accountInformation.name,
+      hash,
+    ])
+      .then((user) => {
+        return callback({
+          success: true,
+          message: `Successfully registered ${user.email}`,
+        });
+      })
+      .catch((err) => {
+        return callback({
+          success: false,
+          error: err,
+        });
+      });
+  });
+};
+
+module.exports = register;

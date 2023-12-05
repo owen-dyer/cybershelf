@@ -14,8 +14,8 @@ app.use(
 
 // Custom middleware
 // TODO: Clean up routing
-app.use("/signin", require("./app/signin"));
-app.use("/register", require("./app/register"));
+app.use("/signin", require("./routes/signin"));
+app.use("/register", require("./routes/register"));
 app.use("/account", require("./app/account"));
 app.use("/public_key", require("./app/public_key"));
 

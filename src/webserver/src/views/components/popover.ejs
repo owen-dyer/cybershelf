@@ -7,17 +7,5 @@
 <div
   popover
   id="<%- locals.popover_id %>"
-  class="bg-white max-w-7xl w-full border-b border-gray-200"
+  class="<%- locals.popover_class %>"
 ></div>
-
-<!-- Need to fix this and reimplement with tailwind -->
-<!-- Add theme extension for 'inset-none' and use with variant 'popover-open' -->
-<style>
-  #categories-popover:popover-open {
-    position: absolute;
-    inset: unset;
-    top: 3.75rem;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-</style>
