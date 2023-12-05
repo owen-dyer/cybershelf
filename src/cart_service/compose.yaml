@@ -10,9 +10,11 @@ services:
   cart_server:
     image: node:lts
     working_dir: /home/node/app
+    working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
     networks:
+      - cart_server_network
       - cart_server_network
       - cart_db_network
     env_file:
@@ -23,6 +25,7 @@ volumes:
   cart_inventory:
 
 networks:
+  cart_server_network:
   cart_server_network:
     internal: true
   cart_db_network:
