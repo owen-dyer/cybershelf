@@ -1,48 +1,36 @@
 <%- include ('../components/header') %>
 <%- include ('../components/menu') %>
 
-<main>
-  <div class="container">
-    <form action="/register" method="POST"> <!-- Form for user registration -->
-      <div class="mb-3">
-        <div>
-          <h2>Edit Profile</h2>
-        </div>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Type of Account
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Consumer</a>
-            <a class="dropdown-item" href="#">Vendor</a>
-            <a class="dropdown-item" href="#"></a>
+  <div class="row">
+      <div class="col-md-3 border-right">
+        <!-- <img src="./images/profile_pic.jpg"> -->
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="120px" src="https://th.bing.com/th/id/OIP.S171c9HYsokHyCPs9brbPwHaGP?rs=1&pid=ImgDetMain" alt=""><span class="font-weight-bold">Jordan Okada</span><span class="text-black-50">jook@colorado.edu</span><span> </span></div>
+      </div>
+      <div class="col-md-5 border-right">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="text-right">Edit Profile</h4>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-md-6"><label class="labels">First Name</label><input id="first_name" type="text" class="form-control" placeholder="first name" value=""></div>
+                  <div class="col-md-6"><label class="labels">Last Name</label><input id="last_name" type="text" class="form-control" value="" placeholder="last name"></div>
+              </div>
+              <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels">Address</label><input id="address" type="text" class="form-control" placeholder="enter address" value=""></div>
+                  <div class="col-md-12"><label class="labels">Zipcode</label><input id="zipcode" type="text" class="form-control" placeholder="enter zipcode" value=""></div>
+                  <div class="col-md-12"><label class="labels">City</label><input id="city" type="text" class="form-control" placeholder="enter city" value=""></div>
+                  <div class="col-md-12"><label class="labels">State</label><input id="state" type="text" class="form-control" placeholder="enter state" value=""></div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels">Phone Number</label><input id="phone" type="text" class="form-control" placeholder="enter phone number" value=""></div>
+                  <div class="col-md-12"><label class="labels">Email Address</label><input id="email" type="text" class="form-control" placeholder="enter email address" value=""></div>
+                </div>
+                </div>
+              <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
           </div>
-        </div>
-        <div>
-          <label for="first_name" class="form-label">First Name</label>
-          <input type="text" name="first_name" class="form-control" id="first_name" required>
-        </div>
-        <div>
-          <label for="last_name" class="form-label">Last Name</label>
-          <input type="text" name="last_name" class="form-control" id="last_name" required>
-        </div>
-        <div class="mb-3"> 
-          <label for="email" class="form-label">Email Address</label>
-          <input type="text" name="email" class="form-control" id="email" required>
-        </div>
-        <div>
-          <label for="username" class="form-label">Username</label>
-          <input type="text" name="username" class="form-control" id="username" required>
-        </div>
       </div>
-      <div class>
-        <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="password" required>
-      </div>
-      <br>
-      <button type="submit" class="btn btn-primary">Save Changes</button>
-    </form>
   </div>
-</main>
+</div>
+</div>
 
 <%- include ('../components/footer') %>
