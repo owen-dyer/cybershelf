@@ -1,3 +1,28 @@
+<<<<<<< HEAD
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
+const axios = require("axios");
+
+const app = express();
+
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+app.use("/authorize", require("./app/authorize"));
+
+// This is a catch-all route. If none of the routes above get hit then this will return a 404
+app.get("*", (req, res) => {
+  res.status(404);
+});
+
+app.listen(3000, () => {
+  console.log("Auth Server is running");
+});
+=======
 const express = require('express'); // To build an application server or API
 const pgp = require('pg-promise')(); // To connect to the Postgres DB from the node server
 const bcrypt = require('bcrypt'); //  To hash passwords
@@ -55,3 +80,4 @@ app.post('/login', async (req, res) => {
 
 module.exports = app.listen(3000);
 console.log('Server is listening on port 3000');
+>>>>>>> cce0b4671602b0469e8194f310a4da935c8a34bb
