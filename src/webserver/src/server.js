@@ -22,6 +22,7 @@ app.use("/verifyidtoken", require("./app/verify_id_token"));
 app.use("/webserver/public_keys", require("./app/public_keys").router);
 app.use("/static", express.static(path.join(__dirname, "../public")));
 app.use(require("./routes/account"));
+app.use("/inventory", require("./routes/inventory"));
 // TODO: Add to static route
 app.use(
   "/jquery",

@@ -1,7 +1,12 @@
 const signOutHandler = () => {
   const onSuccess = (successResponse) => {
     console.log("Successfully signed out");
-    $("body header").replaceWith(successResponse.template);
+
+    $("body").html(successResponse.template);
+    getCategories();
+    getProducts();
+
+    // $("body header").replaceWith(successResponse.template);
     createToastNotification("success", "Successfully signed out");
   };
 

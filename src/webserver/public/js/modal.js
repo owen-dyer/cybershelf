@@ -13,10 +13,10 @@ const closeModal = (modal) => {
   modal.close();
 };
 
-$("#show-signin-form").on("click", (e) => {
-  openModal(modalElement);
+$(document).on("click", "#show-signin-form", (e) => {
+  $("#empty-modal").get(0).showModal();
 });
 
-$("dialog #close-modal").on("click", (e) => {
-  closeModal(modalElement);
+$(document).on("click", "dialog #close-modal", (e) => {
+  $("#empty-modal").get(0).close();
 });

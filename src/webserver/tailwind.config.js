@@ -22,6 +22,9 @@ module.exports = {
       },
     },
   },
+  corePlugins: {
+    aspectRatio: false,
+  },
   plugins: [
     require("@tailwindcss/forms"),
     ({ addVariant }) => {
