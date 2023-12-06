@@ -2,7 +2,7 @@
 3-Leo is working on cart services push in small doses and update user stories
 6- Test cases for authentication service worked on by Jordan Authentication and registration
 7- Ashton and Celia working on front-end and ejs files
-8- Celia sketching wireframes 
+8- Celia sketching Logo 
 9- Owen worked on Backend and session management
 11- More frequent commits need to be done
 13-Leo is going to finish cart functionality
