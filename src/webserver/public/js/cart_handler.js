@@ -51,3 +51,17 @@ $(document).on("click", "#cart-button", (e) => {
 });
 
 // TODO: Add UI for add to cart/remove from cart
+const getItems = () => {
+  $.ajax({
+    url: "http://api.localhost/cart",
+    method: "GET",
+    success: (data) => {
+      data.cart_item.map((cart_item) => {
+        $("#cart").append(`<h1>${cart_item.name}</h1>`);
+      });
+    },
+    error: (err) => {
+      $("#cart").append(`<h2>${err}</h2>`);
+    },
+  });
+};

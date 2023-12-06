@@ -1,0 +1,13 @@
+﻿1-Base requirements accomplished
+2-Architecture diagram completed by Ashton
+3-Not launching on Leo local system (individual issue) made Ejs cart page hover-coded routes 
+5-Owen made account services functional and implementing ui’s to work
+6-Jordan worked on front-end pages index pages and getting them implemented
+7-Celia is working on the orders database and Ui-stuff and the project report and presentation
+8-Celia double-checking pushes
+9-Demo working
+10-Some features not working locally for some troubleshooting those
+11- troubleshooting
+
+
+Minimum requirements have been met, but it still isn't completely functional Troubleshooting required as it cant be hosted and tested on certain machines
