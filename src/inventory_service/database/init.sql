@@ -10,7 +10,8 @@ CREATE TABLE
     product (
         id SERIAL PRIMARY KEY,
         title VARCHAR(256),
-        description VARCHAR(1000)
+        description VARCHAR(1000),
+        featured BOOLEAN DEFAULT FALSE
     );
 
 CREATE TABLE

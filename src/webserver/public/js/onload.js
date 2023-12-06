@@ -1,4 +1,5 @@
 $(document).ready(() => {
   getCategories();
-  getProducts();
+  // getProducts();
+  getFeaturedProducts();
 });

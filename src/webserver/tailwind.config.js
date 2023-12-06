@@ -30,5 +30,6 @@ module.exports = {
     ({ addVariant }) => {
       addVariant("popover-open", "&:popover-open");
     },
+    require("@tailwindcss/aspect-ratio"),
   ],
 };
