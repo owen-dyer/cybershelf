@@ -78,7 +78,7 @@
     </div>
   </div>
   <!-- Formatting this breaks it... -->
-  <%- include ('../components/popover', {popover_id: "categories-popover", popover_class: "bg-white max-w-7xl w-full border-b border-gray-200 popover-open:absolute popover-open:inset-unset popover-open:top-[3.75rem] popover-open:left-1/2 popover-open:-translate-x-1/2 popover-open:p-4"}) %>
+  <%- include ('../components/popover', {popover_id: "categories-popover", popover_class: "bg-white max-w-7xl w-full border-b border-gray-200 popover-open:absolute popover-open:inset-unset popover-open:top-[3.75rem] popover-open:left-1/2 popover-open:-translate-x-1/2 popover-open:p-4 popover-open:flex popover-open: gap-4"}) %>
   <%- include ('../components/popover', {popover_id: "mobile-menu"}) %>
   <%- include ('../components/modal') %>
 </header>
@@ -99,13 +99,14 @@
 </script> -->
 
 <!-- Just for tesing -->
+<!-- TODO: Create script file for this among other inventory handlers -->
 <script>
   $.ajax({
     url: "http://api.localhost/categories",
     method: "GET",
     success: (data) => {
       data.categories.map((category) => {
-        $("#categories-popover").append(`<h2>${category}</h2>`);
+        $("#categories-popover").append(`<h2>${category.title}</h2>`);
       });
     },
     error: (err) => {
