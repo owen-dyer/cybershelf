@@ -1,5 +1,5 @@
 const db = require("../database/init");
-const { createUserQuery } = require("../database/queries");
+const { account } = require("../database/sql");
 const bcrypt = require("bcrypt");
 
 const register = async (accountInformation, callback) => {
@@ -19,7 +19,7 @@ const register = async (accountInformation, callback) => {
     }
 
     console.log(hash);
-    db.one(createUserQuery, [
+    db.one(account.register, [
       accountInformation.email,
       accountInformation.name,
       hash,

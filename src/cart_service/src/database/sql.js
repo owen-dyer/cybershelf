@@ -1,6 +1,3 @@
-// const { QueryFile } = require("pg-promise");
-// const path = require("path");
-
 const { PreparedStatement: PS } = require("pg-promise");
 
 const read = new PS({
@@ -23,17 +20,3 @@ module.exports = {
     read,
   },
 };
-
-// const sql = (file) => {
-//   const fullPath = path.join(__dirname, file);
-//   return new QueryFile(fullPath, {
-//     minify: true,
-//   });
-// };
-
-// module.exports = {
-//   cart: {
-//     add: sql("../../database/add.sql"),
-//     read: sql("../../database/read.sql"),
-//   },
-// };

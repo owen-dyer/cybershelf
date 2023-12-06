@@ -7,10 +7,10 @@ router.use((req, res, next) => {
   next();
 });
 
-router.route("/browse").get((req, res, next) => {
-    res.status(200).json({
-        message: "Browse featured items/all items",
-    });
+router.route("/browse").post((req, res, next) => {
+  res.render("inventory/pages/browse_view", {
+    products: req.body.products,
+  });
 });
 
 // TODO: Add other routes related to inventory (filter view, etc.)

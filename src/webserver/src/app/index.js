@@ -21,10 +21,14 @@ router.route("/").get(
   },
   (req, res, next) => {
     // TODO: Add other checks here for audience and other claims
-    const decoded = jwt.verify(req.cookies.id_token, getPublicKeys());
-    res.render("pages/index", {
-      authenticated: true,
-      name: decoded.name,
+    jwt.verify(req.cookies.id_token, getPublicKeys(), (err, decoded) => {
+      if (err) {
+        next();
+      }
+      res.render("pages/index", {
+        authenticated: true,
+        name: decoded.name,
+      });
     });
   }
 );

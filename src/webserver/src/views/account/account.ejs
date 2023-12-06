@@ -1,15 +1,4 @@
-<div class="row">
-  <div class="col-md-3 border-right">
-    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-      <img
-        class="rounded-circle mt-5"
-        width="120px"
-        src="https://th.bing.com/th/id/OIP.S171c9HYsokHyCPs9brbPwHaGP?rs=1&pid=ImgDetMain"
-        alt=""
-      /><span class="font-weight-bold">Jordan Okada</span
-      ><span class="text-black-50">jook@colorado.edu</span><span> </span>
-    </div>
-  </div>
+<!-- <div class="row">
   <div class="col">
     <div class="p-4 py-5">
       <div class="d-flex justify-content-between align-items-center mb-3">
@@ -22,9 +11,6 @@
             <div class="row g-0">
               <div class="col-md-8">
                 <div class="card-body p-4">
-                  <h6>Bio</h6>
-                  <p class="text-muted">I love consumerism</p>
-                  <hr class="mt-1 mb-1" />
                   <div class="row pt-1">
                     <div class="col-6 mb-0">
                       <h6>Email</h6>
@@ -57,5 +43,39 @@
         </div>
       </div>
     </div>
+  </div>
+</div> -->
+
+<div class="p-4">
+  <div class="px-4 sm:px-0">
+    <h3 class="text-base font-semibold leading-7 text-gray-900">
+      Your Account
+    </h3>
+  </div>
+  <div class="mt-6 border-t border-gray-100">
+    <dl class="divide-y divide-gray-100">
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+          <%= locals.name %>
+        </dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">
+          Email address
+        </dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+          <%= locals.email %>
+        </dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">
+          Change Password
+        </dt>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Address</dt>
+      </div>
+    </dl>
   </div>
 </div>
