@@ -43,3 +43,37 @@ const getProducts = () => {
     },
   });
 };
+
+const getFeaturedProducts = () => {
+  $.ajax({
+    url: "http://api.localhost/products/featured",
+    method: "GET",
+    success: (data) => {
+      $.ajax({
+        url: "/inventory/featured",
+        method: "POST",
+        data: data,
+        dataType: "json",
+        success: (template) => {
+          // console.log(template);
+        },
+        error: (err) => {
+          // console.log("Error");
+          // console.log(err);
+          // FIXME: Response status code is 200 but an error for some reason
+          // this works for now though
+          // $("main").html(err.responseText);
+          // $("main").after(err.responseText);
+          $("#home-hero-section").after(err.responseText);
+        },
+      });
+    },
+    error: (err) => {
+      $("main").html(`<h2>${err}</h2>`);
+    },
+  });
+};
+
+$(document).on("click", "#browse-products-button", (e) => {
+  getProducts();
+});

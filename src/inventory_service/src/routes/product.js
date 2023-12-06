@@ -1,5 +1,9 @@
 const express = require("express");
-const { getAllProducts, filterProducts } = require("../app/products");
+const {
+  getAllProducts,
+  filterProducts,
+  getFeaturedProducts,
+} = require("../app/products");
 
 const router = express.Router();
 
@@ -10,6 +14,14 @@ router.use((req, res, next) => {
 
 router.route("/").get((req, res, next) => {
   getAllProducts((data) => {
+    res.status(200).json({
+      products: data,
+    });
+  });
+});
+
+router.route("/featured").get((req, res, next) => {
+  getFeaturedProducts((data) => {
     res.status(200).json({
       products: data,
     });

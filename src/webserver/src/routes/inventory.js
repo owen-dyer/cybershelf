@@ -13,6 +13,12 @@ router.route("/browse").post((req, res, next) => {
   });
 });
 
+router.route("/featured").post((req, res, next) => {
+  res.render("inventory/pages/feature_view", {
+    products: req.body.products,
+  });
+});
+
 // TODO: Add other routes related to inventory (filter view, etc.)
 
 module.exports = router;
