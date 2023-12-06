@@ -23,16 +23,28 @@ CyberShelf also enables small businesses to grow by providing the opportunity fo
     - Email: aswi7205@colorado.edu
  
 ## Technology Stack
-- 
+| Stack | Use |
+| --- | --- |
+| Azure | Deployment Environment |
+| Bootstrap, Tailwind | Frontend Framework |
+| Docker | Containerization |
+| EJS | Templating |
+| GitHub | VCS Repository |
+| Mocha, Chai | Testing |
+| NodeJS | Application Server |
+| PostgreSQL | Database |
 
 ## Prerequisites to Run the Application
--
+- Docker Compose must be installed and running in the background in order to run the application.
 
 ## How to Run the Application Locally
--
+- Clone the repository via git.
+- Navigate to the cloned repository.
+- Navigate to each of the following folders in separate terminals and run the "docker-compose up" command within them: webserver, inventory_service, cart_service, order_service, account_service, auth_service, and nginx. Ensure that the account_service container is started before the auth_service, and that all other containers are started before nginx.
+- Then boom, you're in business.
 
 ## How to Run Tests
--
+- The tests will run automatically each time the application is ran.
 
 ## Deployed Application Link
--
+- http://recitation-11-team-06.eastus.cloudapp.azure.com:3000/
