@@ -1,5 +1,5 @@
 const db = require("../database/init");
-const { verifyCredentialsQuery } = require("../database/queries");
+const { account } = require("../database/sql");
 const bcrypt = require("bcrypt");
 
 // Temporary
@@ -7,7 +7,7 @@ const createIdToken = require("./create_id_token");
 
 const signin = async (credentials, callback) => {
   await db
-    .one(verifyCredentialsQuery, credentials.email)
+    .one(account.signin, credentials.email)
     .then((user) => {
       bcrypt.compare(
         credentials.password,

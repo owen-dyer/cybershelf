@@ -1,18 +1,24 @@
-const express = require("express");
-const router = express.Router();
+const db = require("../database/init");
+const { account } = require("../database/sql");
 
-router.use((req, res, next) => {
-  console.log(
-    `Account Settings request received at ${new Date().toUTCString()}`
-  );
-  next();
-});
+// TODO: Implement authorization stuff so that this is secure
+// For just just gonna check the account id in the JWT cuz whatever
+const getAccountInfo = async (user_id, callback) => {
+  await db
+    .one(account.details, user_id)
+    .then((user) => {
+      callback(user);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+};
 
-router.route("/").get((req, res, next) => {
-  res.status(200).json({
-    status: "success",
-    message: "Account settings response",
-  });
-});
+const updateAccountInfo = async (user_id, callback) => {
+  // Update account info
+};
 
-module.exports = router;
+module.exports = {
+  getAccountInfo,
+  updateAccountInfo,
+};

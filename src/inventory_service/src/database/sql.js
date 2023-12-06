@@ -5,8 +5,20 @@ const categories = new PS({
   text: `SELECT title, description, slug FROM category;`,
 });
 
+const allProducts = new PS({
+  name: "all-products",
+  text: `SELECT id, title, description FROM product;`,
+});
+
+const filterProducts = new PS({
+  name: "filter-products",
+  text: `SELECT id, title, description FROM product WHERE $1 LIKE '%' || LOWER(title) || '%';`,
+});
+
 module.exports = {
   inventory: {
     categories,
+    allProducts,
+    filterProducts,
   },
 };
