@@ -1,18 +1,12 @@
-const express = require("express");
 const path = require("path");
 
-const app = express();
+const { app, express } = require("./app/app");
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "./views/"));
-
-// Return an overview of all inventory (definitely not a good thing for production but for our use case right now this is fine)
-app.get("/inventory", (req, res) => {
-  res.render("pages/all");
-});
+// Custom middleware functions
+app.use("/categories", require("./routes/categories"));
 
 app.get("*", (req, res) => {
-  res.status(404).render("pages/error/404");
+  res.status(404);
 });
 
 app.listen(3000, () => {

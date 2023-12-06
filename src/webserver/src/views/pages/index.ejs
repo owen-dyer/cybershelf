@@ -1,0 +1,8 @@
+<%- include ('../components/header') %>
+<!-- Here we pass the locals object from index.ejs into the navigation template -->
+<%- include ('../components/navigation', Object.assign(locals)) %>
+
+<!-- We are going to inject the data into the div -->
+<div id="index-content"></div>
+
+<%- include ('../components/footer') %>

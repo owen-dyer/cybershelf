@@ -2,7 +2,8 @@ services:
   inventory_database:
     image: postgres
     volumes:
-      - store_inventory:/var/lib/postgres/data
+      - inventory:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d
     networks:
       - inventory_db_network
     env_file:
@@ -22,7 +23,7 @@ services:
     command: "npm start"
 
 volumes:
-  store_inventory:
+  inventory:
 
 networks:
   inventory_server_network:

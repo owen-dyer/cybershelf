@@ -3,6 +3,7 @@ services:
     image: postgres
     volumes:
       - account_information:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d
     networks:
       - account_db_network
     env_file:
@@ -20,6 +21,7 @@ services:
     depends_on:
       - account_database
     command: "npm start"
+    # command: "npm run testandrun"
 
 volumes:
   account_information:

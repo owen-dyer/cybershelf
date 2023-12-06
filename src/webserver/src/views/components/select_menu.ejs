@@ -1,0 +1,13 @@
+<div id="select-container" class="relative w-fit">
+  <button id="select-menu-button" class="<%- locals.select_button_style %>">
+    <%= locals.select_button_label %>
+  </button>
+  <dialog
+    id="select-menu"
+    class="absolute rounded-lg px-4 py-1.5 bg-gray-100 open:flex open:flex-col"
+  >
+    <button id="cart-button" class="text-sm text-gray-800">Cart</button>
+    <button id="orders-button" class="text-sm text-gray-800">Orders</button>
+    <button id="signout-button" class="text-sm text-gray-800">Sign Out</button>
+  </dialog>
+</div>

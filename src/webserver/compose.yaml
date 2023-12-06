@@ -1,0 +1,16 @@
+services:
+  webserver:
+    image: node:lts
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    networks:
+      - webserver_network
+      - account_service_account_server_network
+    command: "npm start"
+
+networks:
+  webserver_network:
+  # TODO: Check that everything works fine when this network is removed
+  account_service_account_server_network:
+    external: true
