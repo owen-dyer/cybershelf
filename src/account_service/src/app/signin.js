@@ -1,17 +1,9 @@
-const express = require("express");
 const db = require("../database/init");
 const { verifyCredentialsQuery } = require("../database/queries");
 const bcrypt = require("bcrypt");
 
-const router = express.Router();
-
 // Temporary
 const createIdToken = require("./create_id_token");
-
-router.use((req, res, next) => {
-  console.log(`Signin request received at ${new Date().toUTCString()}`);
-  next();
-});
 
 const signin = async (credentials, callback) => {
   await db

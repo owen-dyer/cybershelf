@@ -24,6 +24,5 @@ const signOutHandler = () => {
 };
 
 $(document).on("click", "#signout-button", (e) => {
-  e.preventDefault();
   signOutHandler();
 });

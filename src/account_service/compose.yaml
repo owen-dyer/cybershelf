@@ -11,11 +11,9 @@ services:
   account_server:
     image: node:lts
     working_dir: /home/node/app
-    working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
     networks:
-      - account_server_network
       - account_server_network
       - account_db_network
     env_file:
@@ -29,7 +27,6 @@ volumes:
   account_information:
 
 networks:
-  account_server_network:
   account_server_network:
     internal: true
   account_db_network:
