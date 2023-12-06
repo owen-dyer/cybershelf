@@ -24,6 +24,11 @@ const registrationHandler = (fields) => {
   });
 };
 
+$(document).on("click", "#show-register-form", (e) => {
+  $("#modal-content").load("/register");
+  $("#empty-modal").get(0).showModal();
+});
+
 $(document).on("submit", "#registration-form", (e) => {
   e.preventDefault();
   const target = e.target;

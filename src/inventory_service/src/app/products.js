@@ -13,6 +13,18 @@ const getAllProducts = (callback) => {
     });
 };
 
+const getFeaturedProducts = (callback) => {
+  db.manyOrNone(inventory.featuredProducts)
+    .then((obj) => {
+      callback(obj);
+    })
+    .catch((err) => {
+      callback({
+        error: "Failed to get products",
+      });
+    });
+};
+
 // For right now 'keywords' can only be one word
 const filterProducts = (keywords, callback) => {
   db.manyOrNone(inventory.filterProducts, keywords)
@@ -29,5 +41,6 @@ const filterProducts = (keywords, callback) => {
 
 module.exports = {
   getAllProducts,
+  getFeaturedProducts,
   filterProducts,
 };
