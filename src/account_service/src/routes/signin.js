@@ -1,6 +1,4 @@
 const express = require("express");
-const db = require("../database/init");
-const { verifyCredentialsQuery } = require("../database/queries");
 const signin = require("../app/signin");
 
 const router = express.Router();

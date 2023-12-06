@@ -1,5 +1,6 @@
 const express = require("express");
 const register = require("../app/register");
+
 const router = express.Router();
 
 router.use((req, res, next) => {

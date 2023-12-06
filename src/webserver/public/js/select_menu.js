@@ -1,5 +1,5 @@
 $(document)
-  .on("mouseenter", "#select-container #select-menu-button", (e) => {
+  .on("mouseenter", "#select-container #account-button", (e) => {
     e.currentTarget.nextElementSibling.show();
   })
   .on("mouseleave", "#select-container", (e) => {
