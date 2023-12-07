@@ -12,7 +12,7 @@ const readCart = async (id_token, callback) => {
     }
     db.one(cart.cartByUserId, decoded.sub)
       .then((cart_instance) => {
-        db.manyOrNone(cart.read, cart_instance.id)
+        db.many(cart.read, cart_instance.id)
           .then((cart_items) => {
             callback(cart_items);
           })

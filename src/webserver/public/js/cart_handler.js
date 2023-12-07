@@ -3,6 +3,7 @@ const viewCartHandler = () => {
     url: "/api/cart",
     method: "GET",
     success: (data) => {
+      console.log(data);
       const ids = data.cart.map((item) => item.product_id);
       getProductById(ids, (products) => {
         // Duplicate product id here
@@ -14,7 +15,7 @@ const viewCartHandler = () => {
     },
     error: (err) => {
       // TODO: Add custom error handling on the client
-      console.log("Failed to get cart contents");
+      createToastNotification("error", "Cart is empty");
       // Display empty cart page with error message or something like that
     },
   });
@@ -39,17 +40,21 @@ const addToCartHandler = (product_id) => {
 };
 
 const removeFromCartHandler = (fields) => {
+  console.log(fields);
   $.ajax({
     url: "/api/cart/remove",
     method: "DELETE",
-    data: fields,
+    data: {
+      product_id: fields,
+    },
     dataType: "json",
     success: (data) => {
-      console.log(data);
+      $(`#cart-product-card-${data.product_id}`).remove();
+      createToastNotification("success", data.message);
     },
     error: (err) => {
       // TODO: Add custom error handling on the client
-      console.log("Failed to remove item from cart");
+      createToastNotification("error", err.error);
     },
   });
 };
@@ -81,6 +86,13 @@ $(document).on("click", "[id*='add-to-cart']", (e) => {
   const productId = e.target.id.split("-").at(3);
   console.log(productId);
   addToCartHandler(productId);
+});
+
+$(document).on("click", "[id*='remove-from-cart']", (e) => {
+  const target = e.target;
+  const productId = e.target.id.split("-").at(3);
+  console.log(productId);
+  removeFromCartHandler(productId);
 });
 
 $(document).on("click", "#cart-button", (e) => {

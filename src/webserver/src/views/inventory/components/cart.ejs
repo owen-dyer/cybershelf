@@ -9,7 +9,7 @@
     <div class="flow-root">
       <ul role="list" class="-my-6 divide-y divide-gray-200">
         <% locals.cart.map((item) => { %>
-        <li class="flex py-6">
+        <li id="cart-product-card-<%- item.id %>" class="flex py-6">
           <div
             class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
           >
@@ -35,6 +35,7 @@
 
               <div class="flex">
                 <button
+                id="remove-from-cart-<%- item.id %>"
                   type="button"
                   class="font-medium text-blue-600 hover:text-blue-500"
                 >

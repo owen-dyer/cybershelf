@@ -1,6 +1,7 @@
 const express = require("express");
 const readCart = require("../app/read_cart");
 const addToCart = require("../app/add_to_cart");
+const removeFromCart = require("../app/remove_from_cart");
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router.route("/").get((req, res, next) => {
     console.log(cart);
     res.status(cart.error ? 500 : 200).json({
       cart: cart,
+      error: cart.error,
     });
   });
 });
@@ -39,8 +41,10 @@ router.route("/add").post((req, res, next) => {
 });
 
 router.route("/remove").delete((req, res, next) => {
-  res.status(201).json({
-    message: "Remove an item from the user's cart",
+  console.log(req.body);
+  removeFromCart(req.cookies.id_token, req.body.product_id, (data) => {
+    console.log(data);
+    res.status(data.error ? 500 : 201).json(data);
   });
 });
 
