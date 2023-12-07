@@ -27,6 +27,4 @@ CREATE TABLE
 --         RETURN NEW;
 --     END;
 -- $$ LANGUAGE plpgsql;
-
-
 -- CREATE OR REPLACE TRIGGER ts_now BEFORE INSERT ON cart_item FOR EACH ROW EXECUTE FUNCTION ts_now();

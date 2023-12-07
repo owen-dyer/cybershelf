@@ -1,9 +1,9 @@
-async function setPublicKeys(s) {
+// FIXME: For some reason with one function it won't make both requests
+
+// FIXME: I think there is a memory leak in this function, need to look into it
+async function webserverPublicKey(s) {
   const reply = await ngx.fetch("http://account_server:3000/api/public_key");
   const body = await reply.text();
-  const publicKey = JSON.parse(body).public_key;
-
-  // Send public key to the webserver (and maybe others)
   // I'm sure that there is a better way that I should do this but it's fine
   const webserverReply = await ngx.fetch(
     "http://webserver:3000/webserver/public_keys",
@@ -12,13 +12,23 @@ async function setPublicKeys(s) {
     }
   );
   const webserverResponse = await webserverReply.text();
+  return;
+}
 
-  // FIXME: I think there is a memory leak in this function, need to look into it
-
-  // ngx.shared.apk.set("public_key", publicKey);
+async function cartServerPublicKey(s) {
+  const reply = await ngx.fetch("http://account_server:3000/api/public_key");
+  const body = await reply.text();
+  const cartServerReply = await ngx.fetch(
+    "http://cart_server:3000/cart_server/public_keys",
+    {
+      headers: { apk: body },
+    }
+  );
+  const cartServerResponse = await cartServerReply.text();
   return;
 }
 
 export default {
-  setPublicKeys,
+  webserverPublicKey,
+  cartServerPublicKey,
 };

@@ -1,23 +1,33 @@
-const db = require("../database/init");
+const { db, QueryResultError, qrec } = require("../database/init");
+const jwt = require("jsonwebtoken");
+const { getPublicKeys } = require("../app/public_keys");
 const { cart } = require("../database/sql");
 
-const readCart = async (user_id, callback) => {
-  console.log(user_id);
-
-  await db
-    .manyOrNone(cart.read)
-    .then((cart) => {
-      console.log(cart);
-      callback({
-        message: "Query successful",
+const readCart = async (id_token, callback) => {
+  jwt.verify(id_token, getPublicKeys(), (err, decoded) => {
+    if (err) {
+      return callback({
+        error: "You are not authorized to access this resource",
       });
-    })
-    .catch((err) => {
-      console.log(err);
-      callback({
-        message: "Query failed",
+    }
+    db.one(cart.cartByUserId, decoded.sub)
+      .then((cart_instance) => {
+        db.manyOrNone(cart.read, cart_instance.id)
+          .then((cart_items) => {
+            callback(cart_items);
+          })
+          .catch((err) => {
+            callback({
+              error: "Unable to find cart contents",
+            });
+          });
+      })
+      .catch((err) => {
+        callback({
+          error: "Unable to find cart associated with user",
+        });
       });
-    });
+  });
 };
 
 module.exports = readCart;

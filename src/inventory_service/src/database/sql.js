@@ -20,11 +20,17 @@ const filterProducts = new PS({
   text: `SELECT id, title, description, image_url FROM product WHERE POSITION(LOWER($1) IN LOWER(title)) > 0;`,
 });
 
+const getById = new PS({
+  name: "get-by-id",
+  text: `SELECT id, title, description, image_url FROM product WHERE id=ANY($1);`,
+});
+
 module.exports = {
   inventory: {
     categories,
     allProducts,
     featuredProducts,
     filterProducts,
+    getById,
   },
 };
