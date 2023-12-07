@@ -11,6 +11,7 @@ CREATE TABLE
         id SERIAL PRIMARY KEY,
         title VARCHAR(256),
         description VARCHAR(1000),
+        image_url VARCHAR(500),
         featured BOOLEAN DEFAULT FALSE
     );
 

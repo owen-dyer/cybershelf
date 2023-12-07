@@ -7,17 +7,17 @@ const categories = new PS({
 
 const allProducts = new PS({
   name: "all-products",
-  text: `SELECT id, title, description FROM product;`,
+  text: `SELECT id, title, description, image_url FROM product;`,
 });
 
 const featuredProducts = new PS({
   name: "featured-products",
-  text: `SELECT id, title, description FROM product WHERE featured=true;`,
+  text: `SELECT id, title, description, image_url FROM product WHERE featured=true;`,
 });
 
 const filterProducts = new PS({
   name: "filter-products",
-  text: `SELECT id, title, description FROM product WHERE POSITION(LOWER($1) IN LOWER(title)) > 0;`,
+  text: `SELECT id, title, description, image_url FROM product WHERE POSITION(LOWER($1) IN LOWER(title)) > 0;`,
 });
 
 module.exports = {
