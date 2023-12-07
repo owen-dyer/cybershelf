@@ -1,6 +1,6 @@
 const getCategories = () => {
   $.ajax({
-    url: "http://api.localhost/categories",
+    url: "/api/categories",
     method: "GET",
     success: (data) => {
       data.categories.map((category) => {
@@ -18,25 +18,10 @@ const getProducts = () => {
   // This should really be done with listings rather than products but
   // need to setup listings
   $.ajax({
-    url: "http://api.localhost/products",
+    url: "/api/products",
     method: "GET",
     success: (data) => {
-      $.ajax({
-        url: "/inventory/browse",
-        method: "POST",
-        data: data,
-        dataType: "json",
-        success: (template) => {
-          // console.log(template);
-        },
-        error: (err) => {
-          // console.log("Error");
-          // console.log(err);
-          // FIXME: Response status code is 200 but an error for some reason
-          // this works for now though
-          $("main").html(err.responseText);
-        },
-      });
+      renderProducts(data.products, "All Products", true);
     },
     error: (err) => {
       $("main").html(`<h2>${err}</h2>`);
@@ -46,9 +31,10 @@ const getProducts = () => {
 
 const getFeaturedProducts = () => {
   $.ajax({
-    url: "http://api.localhost/products/featured",
+    url: "/api/products/featured",
     method: "GET",
     success: (data) => {
+      /*
       $.ajax({
         url: "/inventory/featured",
         method: "POST",
@@ -58,18 +44,42 @@ const getFeaturedProducts = () => {
           // console.log(template);
         },
         error: (err) => {
-          // console.log("Error");
-          // console.log(err);
           // FIXME: Response status code is 200 but an error for some reason
           // this works for now though
-          // $("main").html(err.responseText);
-          // $("main").after(err.responseText);
           $("#home-hero-section").after(err.responseText);
         },
       });
+      */
+      console.log(data);
+      renderProducts(data.products, "Featured Products", false);
     },
     error: (err) => {
       $("main").html(`<h2>${err}</h2>`);
+    },
+  });
+};
+
+const renderProducts = (products, page_title, new_page) => {
+  console.log(products);
+  $.ajax({
+    url: "/inventory/browse",
+    method: "POST",
+    data: {
+      page: page_title,
+      products,
+    },
+    dataType: "json",
+    success: (template) => {
+      // console.log(template);
+    },
+    error: (err) => {
+      // FIXME: Response status code is 200 but an error for some reason
+      // this works for now though
+      if (new_page) {
+        $("main").html(err.responseText);
+      } else {
+        $("#home-hero-section").after(err.responseText);
+      }
     },
   });
 };

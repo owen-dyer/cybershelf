@@ -28,6 +28,7 @@ const signin = async (credentials, callback) => {
             {
               id: user.id,
               name: user.name,
+              email: user.email,
             },
             (obj) => {
               return callback({

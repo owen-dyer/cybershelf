@@ -8,13 +8,9 @@ router.use((req, res, next) => {
 });
 
 router.route("/browse").post((req, res, next) => {
+  console.log(req.body.page);
   res.render("inventory/pages/browse_view", {
-    products: req.body.products,
-  });
-});
-
-router.route("/featured").post((req, res, next) => {
-  res.render("inventory/pages/feature_view", {
+    title: req.body.page,
     products: req.body.products,
   });
 });

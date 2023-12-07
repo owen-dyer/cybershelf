@@ -25,7 +25,7 @@ const createIdToken = async (claims, callback) => {
       aud: "client", // This should be the client browser I think but this is fine for now
       // IAT claim is set by default so no need to do it manually
       name: claims.name,
-      authorization: ["Some role", "Another role"], // This will store all of the roles that a user has (e.g. user, vendor, admin, etc.)
+      email: claims.email,
     },
     privateKey,
     {

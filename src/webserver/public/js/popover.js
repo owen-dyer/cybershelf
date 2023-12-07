@@ -8,15 +8,15 @@ const popoverState = () => {
   else if (!categoriesPopover.matches(":popover-open")) return false;
 };
 
-body.addEventListener("click", (e) => {
-  if (categories.contains(e.target)) {
-    categoriesChevron.classList.toggle("rotate-90", !popoverState());
-  } else if (!categoriesPopover.contains(e.target)) {
-    categoriesChevron.classList.toggle("rotate-90", false);
+$(document).on("click", (e) => {
+  if ($("#categories").get(0).contains(e.target)) {
+    $("#categories-chevron").toggleClass("rotate-90", true);
+  } else {
+    $("#categories-chevron").toggleClass("rotate-90", false);
   }
 });
 
-categoriesPopover.addEventListener("mouseleave", (e) => {
-  categoriesPopover.togglePopover(false);
-  categoriesChevron.classList.toggle("rotate-90", popoverState());
+$(document).on("mouseleave", "#categories-popover", (e) => {
+  e.currentTarget.togglePopover(false);
+  $("#categories-chevron").toggleClass("rotate-90", false);
 });

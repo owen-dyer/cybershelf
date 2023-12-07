@@ -18,7 +18,6 @@ const register = async (accountInformation, callback) => {
       });
     }
 
-    console.log(hash);
     db.one(account.register, [
       accountInformation.email,
       accountInformation.name,

@@ -29,9 +29,9 @@ router.route("/featured").get((req, res, next) => {
 });
 
 router.route("/filter").get((req, res, next) => {
-  filterProducts(req.query, (data) => {
-    console.log(data);
+  filterProducts(req.query.search, (data) => {
     res.status(200).json({
+      filter: req.query.search,
       products: data,
     });
   });

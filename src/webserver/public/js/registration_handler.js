@@ -11,7 +11,7 @@ const registrationHandler = (fields) => {
   };
 
   $.ajax({
-    url: "http://api.localhost/register",
+    url: "/api/register",
     method: "POST",
     data: fields,
     dataType: "json",

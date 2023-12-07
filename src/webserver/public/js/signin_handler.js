@@ -17,6 +17,8 @@ const signInHandler = (fields) => {
         // The endpoint re-renders some UI components since the UI for authenticated users is slightly different
         // than that of non-authenticated users and we inject those changes into the page
         $("body header").replaceWith(data.template);
+        $("#show-register-form").toggleClass("hidden", true);
+        getCategories();
         // Need to figure this out since name isn't being sent right now due to rendering
         createToastNotification("success", `Welcome, ${data.name}`);
       },
@@ -31,7 +33,7 @@ const signInHandler = (fields) => {
   };
 
   $.ajax({
-    url: "http://api.localhost/signin",
+    url: "/api/signin",
     method: "POST",
     data: fields,
     dataType: "json",

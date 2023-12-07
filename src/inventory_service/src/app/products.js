@@ -29,7 +29,6 @@ const getFeaturedProducts = (callback) => {
 const filterProducts = (keywords, callback) => {
   db.manyOrNone(inventory.filterProducts, keywords)
     .then((obj) => {
-      console.log(obj);
       callback(obj);
     })
     .catch((err) => {

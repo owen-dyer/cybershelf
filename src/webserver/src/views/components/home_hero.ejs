@@ -1,49 +1,7 @@
-<!-- <div class="container mx-auto my-8">
-  <div class="container justify-content-center justify-content-md-between">
-    <button
-      class="navbar-toggler border py-2 text-dark"
-      type="button"
-      data-mdb-toggle="collapse"
-      data-mdb-target="#navbarLeftAlignExample"
-      aria-controls="navbarLeftAlignExample"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="bg-blue-600 text-white py-5">
-      <div class="row">
-        <div class="col">
-          <div class="container py-5" style="padding-left: 100px">
-            <h1>Cybershelf</h1>
-            <br />
-            <h4>
-              Quality products at <br />
-              the price you want
-            </h4>
-            <br />
-            <a href="/about" class="btn btn-outline-light">Learn more</a>
-            <a
-              href="/register"
-              class="btn btn-light shadow-0 text-primary pt-2 border border-white"
-              >Purchase now</a
-            >
-          </div>
-        </div>
-        <div class="col">
-          <img
-            style="border: 2px solid #ffffff"
-            class="rounded-circle mt-4"
-            src="/static/img/cybershelf_logo.png"
-            width="250"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div id="home-hero-section" class="relative isolate px-6 pt-14 lg:px-8 border-b pb-10 mb-10">
+<div
+  id="home-hero-section"
+  class="relative isolate px-6 pt-14 lg:px-8 border-b pb-10 mb-10"
+>
   <div class="mx-auto max-w-2xl">
     <div class="flex justify-center max-h-24">
       <img
@@ -58,8 +16,9 @@
       </h1>
       <!-- TODO: Add some real text here -->
       <p class="mt-6 text-lg leading-8 text-gray-600">
-        Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem
-        cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+        Unleash the Power of Cyberspace: Elevate your online shopping journey
+        with Cybershelf &#8212 Your Gateway to Seamless Selections, Smart Savings,
+        and Effortless Enjoyment.
       </p>
       <div class="mt-10 flex items-center justify-center gap-x-6">
         <button
@@ -69,8 +28,8 @@
           Browse products
         </button>
         <button
-        id="show-register-form"
-          class="bg-white px-3 py-1.5 text-lg text-gray-800 fill-gray-800 font-semibold hover:text-blue-500 hover:fill-blue-500 flex items-center justify-between gap-x-1"
+          id="show-register-form"
+          class="bg-white px-3 py-1.5 text-lg text-gray-800 fill-gray-800 font-semibold hover:text-blue-500 hover:fill-blue-500 flex items-center justify-between gap-x-1 <%- locals.authenticated ? 'hidden' : 'block' %>"
         >
           Register
           <span

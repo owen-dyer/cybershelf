@@ -17,7 +17,7 @@ const featuredProducts = new PS({
 
 const filterProducts = new PS({
   name: "filter-products",
-  text: `SELECT id, title, description FROM product WHERE $1 LIKE '%' || LOWER(title) || '%';`,
+  text: `SELECT id, title, description FROM product WHERE POSITION(LOWER($1) IN LOWER(title)) > 0;`,
 });
 
 module.exports = {
