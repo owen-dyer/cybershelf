@@ -1,6 +1,6 @@
 const searchHandler = (fields) => {
   const onSuccess = (successResponse) => {
-    // console.log(successResponse);
+    console.log(successResponse);
     renderProducts(
       JSON.parse(successResponse).products,
       `Products matching '${JSON.parse(successResponse).filter}'`,
@@ -9,7 +9,7 @@ const searchHandler = (fields) => {
   };
 
   const onError = (errorResponse) => {
-    console.log("Failed to find item");
+    $("main").html(JSON.parse(errorResponse.responseText).error);
   };
 
   $.ajax({

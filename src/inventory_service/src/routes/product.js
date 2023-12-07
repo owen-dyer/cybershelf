@@ -30,9 +30,10 @@ router.route("/featured").get((req, res, next) => {
 
 router.route("/filter").get((req, res, next) => {
   filterProducts(req.query.search, (data) => {
-    res.status(200).json({
+    res.status(data.error ? 500 : 200).json({
       filter: req.query.search,
       products: data,
+      error: data.error,
     });
   });
 });
