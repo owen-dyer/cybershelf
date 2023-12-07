@@ -34,7 +34,6 @@ const getFeaturedProducts = () => {
     url: "/api/products/featured",
     method: "GET",
     success: (data) => {
-      console.log(data);
       renderProducts(data.products, "Featured Products", false);
     },
     error: (err) => {
@@ -45,7 +44,6 @@ const getFeaturedProducts = () => {
 };
 
 const renderProducts = (products, page_title, new_page) => {
-  console.log(products);
   $.ajax({
     url: "/inventory/browse",
     method: "POST",
@@ -68,6 +66,53 @@ const renderProducts = (products, page_title, new_page) => {
     },
   });
 };
+
+const getProductById = (ids, callback) => {
+  if (!Array.isArray(ids)) {
+    ids = [ids];
+  }
+
+  $.ajax({
+    url: "/api/products/by_id",
+    method: "POST",
+    data: {
+      ids: ids,
+    },
+    dataType: "json",
+    success: (data) => {
+      callback(data);
+    },
+    error: (err) => {
+      console.log(err.responseText);
+    },
+  });
+};
+
+const renderProductOverview = (product_id) => {
+  getProductById(product_id, (data) => {
+    console.log(data);
+    $.ajax({
+      url: "/inventory/product_overview",
+      method: "POST",
+      data: data.product.at(0),
+      dataType: "json",
+      success: (template) => {
+        $("#modal-content").html(template);
+        $("#empty-modal").get(0).showModal();
+      },
+      error: (err) => {
+        $("#modal-content").html(err.responseText);
+        $("#empty-modal").get(0).showModal();
+      },
+    });
+  });
+};
+
+$(document).on("click", "[id*='product-overview']", (e) => {
+  const target = e.target;
+  const productId = e.target.id.split("-").at(2);
+  renderProductOverview(productId);
+});
 
 $(document).on("click", "#browse-products-button", (e) => {
   getProducts();

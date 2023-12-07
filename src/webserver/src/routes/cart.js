@@ -7,9 +7,10 @@ router.use((req, res, next) => {
   next();
 });
 
-router.route("/").get((req, res, next) => {
-  res.status(200).json({
-    message: "Render cart with all contents",
+router.route("/").post((req, res, next) => {
+  console.log(req.body);
+  res.render("inventory/components/cart", {
+    cart: req.body.cart,
   });
 });
 

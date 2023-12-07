@@ -10,7 +10,6 @@ services:
     networks:
       - webserver_webserver_network
       - account_service_account_server_network
-      - auth_service_auth_server_network
       - inventory_service_inventory_server_network
       - cart_service_cart_server_network
       - order_service_order_server_network
@@ -21,8 +20,6 @@ networks:
   webserver_webserver_network:
     external: true
   account_service_account_server_network:
-    external: true
-  auth_service_auth_server_network:
     external: true
   inventory_service_inventory_server_network:
     external: true

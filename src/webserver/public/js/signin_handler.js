@@ -3,7 +3,6 @@
 // Handler for all client-side logic related to loggin in
 const signInHandler = (fields) => {
   const onSuccess = (successResponse) => {
-    console.log(successResponse);
     // Here we make a request to the webserver id token verification endpoint which will return data to update the UI
     // (if verification succeeds)
     $.ajax({

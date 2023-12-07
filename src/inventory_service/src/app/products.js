@@ -1,6 +1,8 @@
 const db = require("../database/init");
 const { inventory } = require("../database/sql");
 
+// TODO: Could definitely combine some of these functions into one greater one
+
 const getAllProducts = (callback) => {
   db.manyOrNone(inventory.allProducts)
     .then((obj) => {
@@ -38,8 +40,22 @@ const filterProducts = (keywords, callback) => {
     });
 };
 
+const productsById = (ids, callback) => {
+  console.log(ids);
+  db.manyOrNone(inventory.getById, [ids])
+    .then((obj) => {
+      callback(obj);
+    })
+    .catch((err) => {
+      callback({
+        error: `No products found with the given ids`,
+      });
+    });
+};
+
 module.exports = {
   getAllProducts,
   getFeaturedProducts,
   filterProducts,
+  productsById,
 };

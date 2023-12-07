@@ -8,10 +8,20 @@ router.use((req, res, next) => {
 });
 
 router.route("/browse").post((req, res, next) => {
-  console.log(req.body.page);
+  // console.log(req.body.page);
   res.render("inventory/pages/browse_view", {
     title: req.body.page,
     products: req.body.products,
+  });
+});
+
+router.route("/product_overview").post((req, res, next) => {
+  console.log(req.body);
+  res.render("inventory/components/product_overview", {
+    id: req.body.id,
+    title: req.body.title,
+    description: req.body.description,
+    image_url: req.body.image_url,
   });
 });
 

@@ -23,6 +23,7 @@ app.use("/webserver/public_keys", require("./app/public_keys").router);
 app.use("/static", express.static(path.join(__dirname, "../public")));
 app.use(require("./routes/account"));
 app.use("/inventory", require("./routes/inventory"));
+app.use("/cart", require("./routes/cart"));
 // TODO: Add to static route
 app.use(
   "/jquery",
