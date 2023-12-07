@@ -27,13 +27,13 @@ const getFeaturedProducts = (callback) => {
 
 // For right now 'keywords' can only be one word
 const filterProducts = (keywords, callback) => {
-  db.manyOrNone(inventory.filterProducts, keywords)
+  db.many(inventory.filterProducts, keywords)
     .then((obj) => {
       callback(obj);
     })
     .catch((err) => {
       callback({
-        error: "Unable to find products that match the given keyword",
+        error: `No matches for '${keywords}'`,
       });
     });
 };

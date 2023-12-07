@@ -34,26 +34,11 @@ const getFeaturedProducts = () => {
     url: "/api/products/featured",
     method: "GET",
     success: (data) => {
-      /*
-      $.ajax({
-        url: "/inventory/featured",
-        method: "POST",
-        data: data,
-        dataType: "json",
-        success: (template) => {
-          // console.log(template);
-        },
-        error: (err) => {
-          // FIXME: Response status code is 200 but an error for some reason
-          // this works for now though
-          $("#home-hero-section").after(err.responseText);
-        },
-      });
-      */
       console.log(data);
       renderProducts(data.products, "Featured Products", false);
     },
     error: (err) => {
+      console.log(err);
       $("main").html(`<h2>${err}</h2>`);
     },
   });
