@@ -1,6 +1,6 @@
 const viewCartHandler = () => {
   $.ajax({
-    url: "http://api.localhost/cart",
+    url: "/api/cart",
     method: "GET",
     success: (data) => {
       console.log(data);
@@ -16,7 +16,7 @@ const viewCartHandler = () => {
 
 const addToCartHandler = (fields) => {
   $.ajax({
-    url: "http://api.localhost/cart/add",
+    url: "/api/cart",
     method: "POST",
     data: fields,
     dataType: "json",
@@ -32,7 +32,7 @@ const addToCartHandler = (fields) => {
 
 const removeFromCartHandler = (fields) => {
   $.ajax({
-    url: "http://api.localhost/cart/remove",
+    url: "/api/cart/remove",
     method: "DELETE",
     data: fields,
     dataType: "json",

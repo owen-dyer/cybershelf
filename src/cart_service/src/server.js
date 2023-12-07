@@ -12,7 +12,7 @@ app.use(
 );
 
 // Custom middleware
-app.use("/cart", require("./routes/cart"));
+app.use("/api/cart", require("./routes/cart"));
 
 // Catch all route if none of the other routes match
 app.get("*", (req, res) => {

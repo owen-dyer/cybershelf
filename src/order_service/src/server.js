@@ -3,7 +3,7 @@ const path = require("path");
 
 const app = express();
 
-app.use("/order", require("./app/create_order"));
+app.use("/api/order", require("./app/create_order"));
 
 app.get("*", (req, res) => {
   res.status(404);

@@ -30,6 +30,7 @@ router.route("/").post((req, res, next) => {
     {
       authenticated: true,
       name: decoded.name,
+      email: decoded.email,
     },
     (err, html) => {
       res
@@ -39,6 +40,7 @@ router.route("/").post((req, res, next) => {
         })
         .json({
           name: decoded.name,
+          email: decoded.email,
           template: html,
         });
     }

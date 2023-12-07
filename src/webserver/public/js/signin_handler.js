@@ -13,10 +13,12 @@ const signInHandler = (fields) => {
         id_token: successResponse.id_token,
       },
       success: (data) => {
-        closeModal(modalElement);
+        $("#empty-modal").get(0).close();
         // The endpoint re-renders some UI components since the UI for authenticated users is slightly different
         // than that of non-authenticated users and we inject those changes into the page
         $("body header").replaceWith(data.template);
+        $("#show-register-form").toggleClass("hidden", true);
+        getCategories();
         // Need to figure this out since name isn't being sent right now due to rendering
         createToastNotification("success", `Welcome, ${data.name}`);
       },
@@ -31,7 +33,7 @@ const signInHandler = (fields) => {
   };
 
   $.ajax({
-    url: "http://api.localhost/signin",
+    url: "/api/signin",
     method: "POST",
     data: fields,
     dataType: "json",
@@ -44,6 +46,11 @@ const signInHandler = (fields) => {
     },
   });
 };
+
+$(document).on("click", "#show-signin-form", (e) => {
+  $("#modal-content").load("/signin");
+  $("#empty-modal").get(0).showModal();
+});
 
 $(document).on("submit", "#signin-form", (e) => {
   // Prevent the default submit action so that the page doesn't refresh

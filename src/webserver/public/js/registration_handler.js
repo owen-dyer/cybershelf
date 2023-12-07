@@ -11,7 +11,7 @@ const registrationHandler = (fields) => {
   };
 
   $.ajax({
-    url: "http://api.localhost/register",
+    url: "/api/register",
     method: "POST",
     data: fields,
     dataType: "json",
@@ -23,6 +23,11 @@ const registrationHandler = (fields) => {
     },
   });
 };
+
+$(document).on("click", "#show-register-form", (e) => {
+  $("#modal-content").load("/register");
+  $("#empty-modal").get(0).showModal();
+});
 
 $(document).on("submit", "#registration-form", (e) => {
   e.preventDefault();

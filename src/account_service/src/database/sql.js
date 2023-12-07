@@ -15,9 +15,19 @@ const signin = new PS({
   text: `SELECT * FROM abstract_user WHERE email=$1;`,
 });
 
-const update = new PS({
-  name: "update",
-  text: ``,
+const updateName = new PS({
+  name: "update-name",
+  text: `UPDATE abstract_user SET name=($2) WHERE id=($1) RETURNING id, name, email;`,
+});
+
+const updateEmail = new PS({
+  name: "update-email",
+  text: `UPDATE abstract_user SET email=($2) WHERE id=($1) RETURNING id, name, email;`,
+});
+
+const updatePassword = new PS({
+  name: "update-password",
+  text: `UPDATE abstract_user SET password_hash=($2) WHERE id=($1) RETURNING id, name, email;`,
 });
 
 module.exports = {
@@ -25,5 +35,8 @@ module.exports = {
     details,
     register,
     signin,
+    updateName,
+    updateEmail,
+    updatePassword,
   },
 };

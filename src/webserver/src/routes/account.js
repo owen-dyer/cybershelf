@@ -39,6 +39,9 @@ router.route("/account").get(
         (err, html) => {
           res.status(200).json({
             template: html,
+            name: decoded.name,
+            email: decoded.email,
+            password: "****************"
           });
         }
       );

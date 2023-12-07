@@ -1,5 +1,5 @@
 async function setPublicKeys(s) {
-  const reply = await ngx.fetch("http://account_server:3000/public_key");
+  const reply = await ngx.fetch("http://account_server:3000/api/public_key");
   const body = await reply.text();
   const publicKey = JSON.parse(body).public_key;
 
@@ -15,7 +15,8 @@ async function setPublicKeys(s) {
 
   // FIXME: I think there is a memory leak in this function, need to look into it
 
-  ngx.shared.apk.set("public_key", publicKey);
+  // ngx.shared.apk.set("public_key", publicKey);
+  return;
 }
 
 export default {
