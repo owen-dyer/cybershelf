@@ -1390,7 +1390,7 @@ select {
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
-.border-indigo-500 {
+.border-gray-800 {
   --tw-border-opacity: 1;
   border-color: rgb(99 102 241 / var(--tw-border-opacity));
 }
