@@ -2,7 +2,7 @@ const { PreparedStatement: PS } = require("pg-promise");
 
 const cartByUserId = new PS({
   name: "cart-by-user-id",
-  text: `SELECT id, total_price FROM cart WHERE user_id=$1`,
+  text: `SELECT id FROM cart WHERE user_id=$1`,
 });
 
 const read = new PS({
@@ -32,6 +32,7 @@ const updateTotalPrice = new PS({
 
 module.exports = {
   cart: {
+    cartByUserId,
     cartByUserId,
     read,
     add,

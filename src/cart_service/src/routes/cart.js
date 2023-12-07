@@ -37,6 +37,20 @@ router.route("/add").post((req, res, next) => {
     res.status(201).json({
       data: data,
     });
+  const id_token = req.cookies.id_token;
+  if (!id_token) {
+    return res.status(401).json({
+      message: "You are not authorized to access this resource",
+    });
+  }
+  const info = {
+    id_token: id_token,
+    product: req.body.product,
+  };
+  addToCart(info, (data) => {
+    res.status(201).json({
+      data: data,
+    });
   });
 });
 

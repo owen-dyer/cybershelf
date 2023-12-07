@@ -1,6 +1,9 @@
 const { db, QueryResultError, qrec } = require("../database/init");
 const jwt = require("jsonwebtoken");
 const { getPublicKeys } = require("../app/public_keys");
+const { db, QueryResultError, qrec } = require("../database/init");
+const jwt = require("jsonwebtoken");
+const { getPublicKeys } = require("../app/public_keys");
 const { cart } = require("../database/sql");
 
 const readCart = async (id_token, callback) => {
@@ -27,6 +30,7 @@ const readCart = async (id_token, callback) => {
           error: "Unable to find cart associated with user",
         });
       });
+  });
   });
 };
 
