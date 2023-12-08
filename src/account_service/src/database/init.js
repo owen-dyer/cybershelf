@@ -19,4 +19,11 @@ db.connect()
     console.log(`Failed to connect to database. ${err.message || err}`);
   });
 
-module.exports = db;
+const QueryResultError = pgp.errors.QueryResultError;
+const qrec = pgp.errors.queryResultErrorCode;
+
+module.exports = {
+  db,
+  QueryResultError,
+  qrec,
+};

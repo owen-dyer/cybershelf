@@ -46,7 +46,6 @@ const updateAccountInfo = async (token, field, callback) => {
     } else if (key === "email") {
       db.one(account.updateEmail, [decoded.sub, field.email])
         .then((obj) => {
-          console.log(obj);
           callback(obj);
         })
         .catch((err) => {

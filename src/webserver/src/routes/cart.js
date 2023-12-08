@@ -8,9 +8,9 @@ router.use((req, res, next) => {
 });
 
 router.route("/").post((req, res, next) => {
-  console.log(req.body);
   res.render("inventory/components/cart", {
-    cart: req.body.cart,
+    items: req.body.items,
+    total_price: parseFloat(req.body.total_price).toFixed(2),
   });
 });
 

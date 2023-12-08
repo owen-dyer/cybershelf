@@ -14,7 +14,10 @@ const readCart = async (id_token, callback) => {
       .then((cart_instance) => {
         db.many(cart.read, cart_instance.id)
           .then((cart_items) => {
-            callback(cart_items);
+            callback({
+              items: cart_items,
+              total_price: cart_instance.total_price,
+            });
           })
           .catch((err) => {
             callback({

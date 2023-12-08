@@ -12,7 +12,6 @@ router.use((req, res, next) => {
 // Main account profile page
 router.route("/").get((req, res, next) => {
   getAccountInfo(req.cookies.id_token, (user) => {
-    console.log(user);
     res.status(200).json(user);
   });
 });

@@ -3,8 +3,8 @@ const { inventory } = require("../database/sql");
 
 // TODO: Could definitely combine some of these functions into one greater one
 
-const getAllProducts = (callback) => {
-  db.manyOrNone(inventory.allProducts)
+const getAllListings = (callback) => {
+  db.manyOrNone(inventory.allListings)
     .then((obj) => {
       callback(obj);
     })
@@ -15,8 +15,8 @@ const getAllProducts = (callback) => {
     });
 };
 
-const getFeaturedProducts = (callback) => {
-  db.manyOrNone(inventory.featuredProducts)
+const getFeaturedListings = (callback) => {
+  db.manyOrNone(inventory.featuredListings)
     .then((obj) => {
       callback(obj);
     })
@@ -27,11 +27,13 @@ const getFeaturedProducts = (callback) => {
     });
 };
 
-// For right now 'keywords' can only be one word
-const filterProducts = (keywords, callback) => {
-  db.many(inventory.filterProducts, keywords)
-    .then((obj) => {
-      callback(obj);
+// TODO: Make it so keywords can be an array and can match title, description, etc.
+const getListingByFilter = (keywords, callback) => {
+  db.many(inventory.listingsByFilter, keywords)
+    .then((listings) => {
+      callback({
+        listings: listings,
+      });
     })
     .catch((err) => {
       callback({
@@ -40,11 +42,13 @@ const filterProducts = (keywords, callback) => {
     });
 };
 
-const productsById = (ids, callback) => {
-  console.log(ids);
-  db.manyOrNone(inventory.getById, [ids])
-    .then((obj) => {
-      callback(obj);
+// Technically also a filter
+const getListingById = (ids, callback) => {
+  db.manyOrNone(inventory.listingsById, [ids])
+    .then((listings) => {
+      callback({
+        listings: listings,
+      });
     })
     .catch((err) => {
       callback({
@@ -54,8 +58,8 @@ const productsById = (ids, callback) => {
 };
 
 module.exports = {
-  getAllProducts,
-  getFeaturedProducts,
-  filterProducts,
-  productsById,
+  getAllListings,
+  getFeaturedListings,
+  getListingByFilter,
+  getListingById,
 };

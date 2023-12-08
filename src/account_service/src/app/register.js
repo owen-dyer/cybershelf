@@ -1,4 +1,4 @@
-const db = require("../database/init");
+const { db, QueryResultError, qrec } = require("../database/init");
 const { account } = require("../database/sql");
 const bcrypt = require("bcrypt");
 
@@ -26,7 +26,7 @@ const register = async (accountInformation, callback) => {
       .then((user) => {
         return callback({
           success: true,
-          message: `Successfully registered ${user.email}`,
+          email: user.email,
         });
       })
       .catch((err) => {

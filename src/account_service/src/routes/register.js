@@ -11,7 +11,7 @@ router.use((req, res, next) => {
 router.route("/").post((req, res, next) => {
   register(req.body, (status) => {
     res.status(status.success ? 201 : 401).json({
-      message: status.message,
+      email: status.email,
     });
   });
 });

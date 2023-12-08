@@ -13,7 +13,7 @@ app.use(
 
 // Custom middleware functions
 app.use("/api/categories", require("./routes/categories"));
-app.use("/api/products", require("./routes/product"));
+app.use("/api/listings", require("./routes/listings"));
 
 app.get("*", (req, res) => {
   res.status(404);
