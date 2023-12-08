@@ -1,5 +1,5 @@
 const express = require("express");
-const getCategories = require("../app/get_categories");
+const { getAllCategories, getCategoriesById } = require("../app/categories");
 const router = express.Router();
 
 router.use((req, res, next) => {
@@ -8,10 +8,14 @@ router.use((req, res, next) => {
 });
 
 router.route("/").get((req, res, next) => {
-  getCategories({}, (data) => {
-    res.status(200).json({
-      categories: data,
-    });
+  getAllCategories((categories) => {
+    res.status(200).json(categories);
+  });
+});
+
+router.route("/by_id").post((req, res, next) => {
+  getCategoriesById(req.body.ids, (categories) => {
+    res.status(200).json(categories);
   });
 });
 

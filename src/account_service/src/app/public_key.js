@@ -9,7 +9,6 @@ router.use((req, res, next) => {
 });
 
 router.route("/").get((req, res, next) => {
-  // console.log("Sending public key");
   res.status(200).json({
     public_key: publicKey,
   });

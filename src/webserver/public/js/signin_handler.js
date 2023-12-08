@@ -28,7 +28,11 @@ const signInHandler = (fields) => {
   };
 
   const onError = (errorResponse) => {
-    createToastNotification("error", "Failed to sign in");
+    // createToastNotification("error", "Failed to sign in");
+    $("#signin-form-info-widget")
+      .text(errorResponse.responseJSON.error)
+      .toggleClass("hidden", false)
+      .toggleClass("text-red-500", true);
   };
 
   $.ajax({

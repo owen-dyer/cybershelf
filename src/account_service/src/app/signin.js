@@ -1,4 +1,4 @@
-const db = require("../database/init");
+const { db, QueryResultError, qrec } = require("../database/init");
 const { account } = require("../database/sql");
 const bcrypt = require("bcrypt");
 
@@ -43,6 +43,12 @@ const signin = async (credentials, callback) => {
     })
     .catch((err) => {
       // TODO: Implement PGP error handling using error codes, etc.
+      if (err instanceof QueryResultError) {
+        // Really invalid email but for security purposes we are less specific
+        if (err.code === qrec.noData) {
+          err = "Invalid email or password";
+        }
+      }
       return callback({
         success: false,
         error: err,

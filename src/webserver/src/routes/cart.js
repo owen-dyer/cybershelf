@@ -8,9 +8,15 @@ router.use((req, res, next) => {
 });
 
 router.route("/").post((req, res, next) => {
+<<<<<<< HEAD
   console.log(req.body);
   res.render("inventory/components/cart", {
     cart: req.body.cart,
+=======
+  res.render("inventory/components/cart", {
+    items: req.body.items,
+    total_price: parseFloat(req.body.total_price).toFixed(2),
+>>>>>>> main
   });
 });
 

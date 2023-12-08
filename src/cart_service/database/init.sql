@@ -3,7 +3,7 @@ CREATE TABLE
         id SERIAL PRIMARY KEY,
         -- Users aren't stored in this database so not a "foreign key"
         user_id INTEGER NOT NULL,
-        total_price REAL,
+        total_price REAL DEFAULT 0,
         last_updated TIMESTAMP NULL
     );
 
@@ -14,7 +14,7 @@ CREATE TABLE
         cart_id INTEGER,
         CONSTRAINT item_cart_id FOREIGN KEY (cart_id) REFERENCES cart (id),
         -- Products aren't stored in this database so not a "foreign key"
-        product_id INTEGER NOT NULL,
+        listing_id INTEGER NOT NULL,
         price REAL,
         quantity SMALLINT NOT NULL,
         created_at TIMESTAMP

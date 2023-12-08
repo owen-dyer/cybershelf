@@ -4,8 +4,9 @@ const getCategories = () => {
     method: "GET",
     success: (data) => {
       data.categories.map((category) => {
-        // Add slugs here
-        $("#categories-popover").append(`<button>${category.title}</button>`);
+        $("#categories-popover").append(
+          `<button id='category-button-${category.id}'>${category.title}</button>`
+        );
       });
     },
     error: (err) => {
@@ -14,14 +15,14 @@ const getCategories = () => {
   });
 };
 
-const getProducts = () => {
+const getListings = () => {
   // This should really be done with listings rather than products but
   // need to setup listings
   $.ajax({
-    url: "/api/products",
+    url: "/api/listings",
     method: "GET",
     success: (data) => {
-      renderProducts(data.products, "All Products", true);
+      renderListings(data, "All Listings", true);
     },
     error: (err) => {
       $("main").html(`<h2>${err}</h2>`);
@@ -29,12 +30,16 @@ const getProducts = () => {
   });
 };
 
-const getFeaturedProducts = () => {
+const getFeaturedListings = () => {
   $.ajax({
-    url: "/api/products/featured",
+    url: "/api/listings/featured",
     method: "GET",
     success: (data) => {
+<<<<<<< HEAD
       renderProducts(data.products, "Featured Products", false);
+=======
+      renderListings(data, "Featured Listings", false);
+>>>>>>> main
     },
     error: (err) => {
       console.log(err);
@@ -43,13 +48,17 @@ const getFeaturedProducts = () => {
   });
 };
 
+<<<<<<< HEAD
 const renderProducts = (products, page_title, new_page) => {
+=======
+const renderListings = (listings, page_title, new_page) => {
+>>>>>>> main
   $.ajax({
     url: "/inventory/browse",
     method: "POST",
     data: {
       page: page_title,
-      products,
+      listings,
     },
     dataType: "json",
     success: (template) => {
@@ -67,13 +76,21 @@ const renderProducts = (products, page_title, new_page) => {
   });
 };
 
+<<<<<<< HEAD
 const getProductById = (ids, callback) => {
+=======
+const getListingById = (ids, callback) => {
+>>>>>>> main
   if (!Array.isArray(ids)) {
     ids = [ids];
   }
 
   $.ajax({
+<<<<<<< HEAD
     url: "/api/products/by_id",
+=======
+    url: "/api/listings/by_id",
+>>>>>>> main
     method: "POST",
     data: {
       ids: ids,
@@ -88,6 +105,7 @@ const getProductById = (ids, callback) => {
   });
 };
 
+<<<<<<< HEAD
 const renderProductOverview = (product_id) => {
   getProductById(product_id, (data) => {
     console.log(data);
@@ -95,6 +113,14 @@ const renderProductOverview = (product_id) => {
       url: "/inventory/product_overview",
       method: "POST",
       data: data.product.at(0),
+=======
+const renderListingOverview = (listing_id) => {
+  getListingById(listing_id, (data) => {
+    $.ajax({
+      url: "/inventory/listing_overview",
+      method: "POST",
+      data: data.listings.at(0),
+>>>>>>> main
       dataType: "json",
       success: (template) => {
         $("#modal-content").html(template);
@@ -108,6 +134,7 @@ const renderProductOverview = (product_id) => {
   });
 };
 
+<<<<<<< HEAD
 $(document).on("click", "[id*='product-overview']", (e) => {
   const target = e.target;
   const productId = e.target.id.split("-").at(2);
@@ -116,4 +143,13 @@ $(document).on("click", "[id*='product-overview']", (e) => {
 
 $(document).on("click", "#browse-products-button", (e) => {
   getProducts();
+=======
+$(document).on("click", "[id*='listing-overview']", (e) => {
+  const productId = e.target.id.split("-").at(2);
+  renderListingOverview(productId);
+});
+
+$(document).on("click", "#browse-products-button", (e) => {
+  getListings();
+>>>>>>> main
 });

@@ -1,9 +1,13 @@
 const searchHandler = (fields) => {
   const onSuccess = (successResponse) => {
+<<<<<<< HEAD
     console.log(successResponse);
     renderProducts(
+=======
+    renderListings(
+>>>>>>> main
       JSON.parse(successResponse).products,
-      `Products matching '${JSON.parse(successResponse).filter}'`,
+      `Listings matching '${JSON.parse(successResponse).filter}'`,
       true
     );
   };
@@ -13,7 +17,7 @@ const searchHandler = (fields) => {
   };
 
   $.ajax({
-    url: "/api/products/filter",
+    url: "/api/listings/filter",
     method: "GET",
     data: fields,
     dataType: "text",

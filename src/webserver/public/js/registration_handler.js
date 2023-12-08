@@ -1,7 +1,9 @@
 const registrationHandler = (fields) => {
   const onSuccess = (successResponse) => {
-    console.log(successResponse);
-    createToastNotification("success", "Successfully registered account");
+    createToastNotification(
+      "success",
+      `Successfully registered ${successResponse.email}`
+    );
     // Bring up the signin form so that the user can sign in after registering
     $("#modal-content").load("/signin");
   };
@@ -33,5 +35,12 @@ $(document).on("submit", "#registration-form", (e) => {
   e.preventDefault();
   const target = e.target;
   const fields = $(target).serialize();
+  const parsed = fields.split("&");
+  if (parsed.at(2).split("=").at(1) !== parsed.at(3).split("=").at(1)) {
+    $("#register-form-info-widget")
+      .text("Passwords do not match")
+      .toggleClass("hidden", false);
+    return;
+  }
   registrationHandler(fields);
 });
