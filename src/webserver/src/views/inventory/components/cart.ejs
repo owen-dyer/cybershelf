@@ -8,7 +8,11 @@
   <div class="mt-8">
     <div class="flow-root">
       <ul role="list" class="-my-6 divide-y divide-gray-200">
+<<<<<<< HEAD
+        <% locals.cart.map((item) => { %>
+=======
         <% locals.items.map((item) => { %>
+>>>>>>> main
         <li id="cart-product-card-<%- item.id %>" class="flex py-6">
           <div
             class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
@@ -35,7 +39,11 @@
 
               <div class="flex">
                 <button
+<<<<<<< HEAD
+                id="remove-from-cart-<%- item.id %>"
+=======
                   id="remove-from-cart-<%- item.id %>"
+>>>>>>> main
                   type="button"
                   class="font-medium text-blue-600 hover:text-blue-500"
                 >
@@ -54,9 +62,17 @@
 <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
   <div class="flex justify-between text-base font-medium text-gray-900">
     <p>Subtotal</p>
+<<<<<<< HEAD
+    <p>$999.99</p>
+  </div>
+  <p class="mt-0.5 text-sm text-gray-500">
+    Free Shipping
+  </p>
+=======
     <p id="cart-total-price">$<%= locals.total_price %></p>
   </div>
   <p class="mt-0.5 text-sm text-gray-500">Free Shipping</p>
+>>>>>>> main
   <div class="mt-6">
     <a
       href="#"

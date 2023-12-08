@@ -2,7 +2,21 @@ CREATE TABLE
     category (
         id SERIAL PRIMARY KEY,
         title VARCHAR(100) NOT NULL UNIQUE,
+<<<<<<< HEAD
+        description VARCHAR(1000),
+        slug VARCHAR(150) UNIQUE
+    );
+
+CREATE TABLE
+    product (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(256),
+        description VARCHAR(1000),
+        image_url VARCHAR(500),
+        featured BOOLEAN DEFAULT FALSE
+=======
         description VARCHAR(500)
+>>>>>>> main
     );
 
 CREATE TABLE

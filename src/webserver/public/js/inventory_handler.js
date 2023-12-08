@@ -35,15 +35,24 @@ const getFeaturedListings = () => {
     url: "/api/listings/featured",
     method: "GET",
     success: (data) => {
+<<<<<<< HEAD
+      renderProducts(data.products, "Featured Products", false);
+=======
       renderListings(data, "Featured Listings", false);
+>>>>>>> main
     },
     error: (err) => {
+      console.log(err);
       $("main").html(`<h2>${err}</h2>`);
     },
   });
 };
 
+<<<<<<< HEAD
+const renderProducts = (products, page_title, new_page) => {
+=======
 const renderListings = (listings, page_title, new_page) => {
+>>>>>>> main
   $.ajax({
     url: "/inventory/browse",
     method: "POST",
@@ -67,13 +76,21 @@ const renderListings = (listings, page_title, new_page) => {
   });
 };
 
+<<<<<<< HEAD
+const getProductById = (ids, callback) => {
+=======
 const getListingById = (ids, callback) => {
+>>>>>>> main
   if (!Array.isArray(ids)) {
     ids = [ids];
   }
 
   $.ajax({
+<<<<<<< HEAD
+    url: "/api/products/by_id",
+=======
     url: "/api/listings/by_id",
+>>>>>>> main
     method: "POST",
     data: {
       ids: ids,
@@ -88,12 +105,22 @@ const getListingById = (ids, callback) => {
   });
 };
 
+<<<<<<< HEAD
+const renderProductOverview = (product_id) => {
+  getProductById(product_id, (data) => {
+    console.log(data);
+    $.ajax({
+      url: "/inventory/product_overview",
+      method: "POST",
+      data: data.product.at(0),
+=======
 const renderListingOverview = (listing_id) => {
   getListingById(listing_id, (data) => {
     $.ajax({
       url: "/inventory/listing_overview",
       method: "POST",
       data: data.listings.at(0),
+>>>>>>> main
       dataType: "json",
       success: (template) => {
         $("#modal-content").html(template);
@@ -107,6 +134,16 @@ const renderListingOverview = (listing_id) => {
   });
 };
 
+<<<<<<< HEAD
+$(document).on("click", "[id*='product-overview']", (e) => {
+  const target = e.target;
+  const productId = e.target.id.split("-").at(2);
+  renderProductOverview(productId);
+});
+
+$(document).on("click", "#browse-products-button", (e) => {
+  getProducts();
+=======
 $(document).on("click", "[id*='listing-overview']", (e) => {
   const productId = e.target.id.split("-").at(2);
   renderListingOverview(productId);
@@ -114,4 +151,5 @@ $(document).on("click", "[id*='listing-overview']", (e) => {
 
 $(document).on("click", "#browse-products-button", (e) => {
   getListings();
+>>>>>>> main
 });

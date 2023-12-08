@@ -1,6 +1,11 @@
 const searchHandler = (fields) => {
   const onSuccess = (successResponse) => {
+<<<<<<< HEAD
+    console.log(successResponse);
+    renderProducts(
+=======
     renderListings(
+>>>>>>> main
       JSON.parse(successResponse).products,
       `Listings matching '${JSON.parse(successResponse).filter}'`,
       true
