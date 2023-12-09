@@ -1,6 +1,6 @@
 const { db, QueryResultError, qrec } = require("../database/init");
 const { account } = require("../database/sql");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const register = async (accountInformation, callback) => {
   if (accountInformation.password !== accountInformation.confirmpassword) {
