@@ -13,8 +13,12 @@ router.use((req, res, next) => {
 //   });
 // });
 
+router.route("/checkout").get((req, res, next) => {
+  res.render("orders/checkout");
+});
+
 router.route("/").post((req, res, next) => {
-  res.render("orders/components/thank_you", {
+  res.render("orders/thank_you", {
     items: req.body.items,
     total_price: parseFloat(req.body.total_price).toFixed(2),
   });
