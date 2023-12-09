@@ -2,14 +2,13 @@ const signOutHandler = () => {
   const onSuccess = (successResponse) => {
     $("body").html(successResponse.template);
     getCategories();
-    getFeaturedProducts();
-    $("#show-register-form").toggleClass("hidden", false);
+    getFeaturedListings();
 
-    createToastNotification("success", "Successfully signed out");
+    createToastNotification(true, "Successfully signed out");
   };
 
   const onError = (errorResponse) => {
-    createToastNotification("error", "Failed to sign out");
+    createToastNotification(false, "Failed to sign out");
   };
 
   $.ajax({
@@ -17,6 +16,8 @@ const signOutHandler = () => {
     url: "/signout",
     method: "GET",
     success: (data) => {
+      console.log("Successfully signed out");
+      console.log(data);
       onSuccess(data);
     },
     error: (err) => {
