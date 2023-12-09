@@ -93,7 +93,7 @@ Now execute the following command:
 > docker compose up
 
 Now the application should start correctly. If it does, you will see the following terminal output:
-> <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> Server is running <br>
+> ... Server is running <br>
 > Successfully connected to database (except for the Webserver application)
 
 
