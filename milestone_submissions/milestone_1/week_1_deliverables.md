@@ -12,7 +12,7 @@ Team CyberShelf
     - Email: ceca8169@colorado.edu
 - Owen Dyer
     - GitHub Username: owen-dyer
-    - Email: owdy8946@colorado.edu
+    - Email: owen.dyer@colorado.edu
 - Jordan Okada
     - GitHub Username: jordanokada
     - Email: jook4324@colorado.edu
@@ -35,7 +35,7 @@ CyberShelf also enables small businesses to grow by providing the opportunity fo
 For budget-conscious consumers seeking quality products online, CyberShelf is the ultimate online shopping destination, where affordability meets excellence.
 
 ## Version Control
-git repository: https://github.com/owen-dyer/cybershelf/tree/main
+Remote repository: https://github.com/owen-dyer/cybershelf
 
 ## Development Methodology
 Agile Methodology
@@ -48,7 +48,10 @@ Our team will be having our weekly meetings and communicate via Discord on our 3
 - Weekly TA Meetings 9:45 a.m. on Mondays via Google Meets
 
 ## Use Case Diagram
-./CyberShelf UCD.png
+[Use Case Diagram](./use_case_diagram.png)
 
 ## Wireframes
-./(account|cart|login|register).png
+- [Registration Page](./register.png)
+- [Signin Page](./login.png)
+- [Account Page](./account.png)
+- [Cart Page](./cart.png)

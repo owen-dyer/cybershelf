@@ -25,7 +25,7 @@ router.route("/add").post((req, res, next) => {
   const id_token = req.cookies.id_token;
   if (!id_token) {
     return res.status(401).json({
-      message: "You are not authorized to access this resource",
+      message: "Please sign in to add items to your cart",
     });
   }
   const info = {

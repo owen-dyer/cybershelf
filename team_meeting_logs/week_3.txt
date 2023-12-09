@@ -1,0 +1,14 @@
+Minutes of the meeting:
+    1:00 - Registration/login completed init-data completed
+    3:00 - Leo is working on cart services push in small doses and update user stories
+    6:00 - Test cases for authentication service worked on by Jordan Authentication and registration
+    7:00- Ashton and Celia working on front-end and ejs files
+    8:00 - Celia sketching wireframes 
+    9:00 - Owen worked on Backend and session management
+    11:00 - More frequent commits need to be done
+    13:00 - Leo is going to finish cart functionality
+    15:00 - Ashton and Celia will work on front-end
+
+TODO:
+    - Work on cart service
+    - Work on frontend (pages/components/form/general layout)

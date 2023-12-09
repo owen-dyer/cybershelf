@@ -9,7 +9,7 @@ const registrationHandler = (fields) => {
   };
 
   const onError = (errorResponse) => {
-    createToastNotification("error", "Failed to register account");
+    createToastNotification(false, "Failed to register account");
   };
 
   $.ajax({
@@ -39,7 +39,8 @@ $(document).on("submit", "#registration-form", (e) => {
   if (parsed.at(2).split("=").at(1) !== parsed.at(3).split("=").at(1)) {
     $("#register-form-info-widget")
       .text("Passwords do not match")
-      .toggleClass("hidden", false);
+      .toggleClass("hidden", false)
+      .toggleClass("text-red-500", true);
     return;
   }
   registrationHandler(fields);

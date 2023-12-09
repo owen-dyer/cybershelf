@@ -34,7 +34,7 @@ const addToCartHandler = (listing_id) => {
       },
       error: (err) => {
         // TODO: Add custom error handling on the client
-        createToastNotification(false, "Failed to add to cart");
+        createToastNotification(false, err.responseJSON.message);
       },
     });
   });
