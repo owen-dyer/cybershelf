@@ -100,4 +100,4 @@ Now the application should start correctly. If it does, you will see the followi
 ## Running tests
 - Tests will run automatically each time the application starts
 
-## Deployed Application: <a href="http://recitation-11-team-06.eastus.cloudapp.azure.com/" target="_blank">CyberShelf</a>
+## Deployed Application: [CyberShelf](http://recitation-11-team-06.eastus.cloudapp.azure.com/)
