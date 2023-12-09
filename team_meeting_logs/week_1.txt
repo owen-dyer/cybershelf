@@ -1,0 +1,11 @@
+Minutes of the meeting:
+    3:00 - Assign user stories to teammates
+    5:00 - Make use case diagram(Making it using Lucidchart)
+    7:00 - Wireframes completed
+    8:00 - Docker Vs Git version control
+    9:00 - Deciding if EngineX is ok
+    11:00 - Required user stories amount (2-3)
+
+TODO:
+    - Finish initial setup and begin code for the website
+    - Wait for Sreetha to approve of NGINX

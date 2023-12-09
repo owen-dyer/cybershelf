@@ -1,0 +1,19 @@
+Minutes of the meeting:
+    1:00 - Base requirements accomplished
+    2:00 - Architecture diagram completed by Ashton
+    3:00 - Not launching on Leo local system (individual issue) made Ejs cart page hover-coded routes 
+    5:00 - Owen made account services functional and implementing ui’s to work
+    6:00 - Jordan worked on front-end pages index pages and getting them implemented
+    7:00 - Celia is working on the orders database and Ui-stuff and the project report and presentation
+    8:00 - Celia double-checking pushes
+    9:00 - Demo working
+    10:00 - Some features not working locally for some troubleshooting those
+    11:00 - troubleshooting
+
+Minimum project requirements have been met but some additional features are still non-functional
+Some group members are having issues running parts of the project locally
+
+TODO:
+    - Finish implementing cart and order services
+    - Finish UI
+    - Troubleshoot why some parts of the project don't work on certain operating systems
