@@ -14,9 +14,7 @@
 - [Deployed Application](#deployed-application)
 
 ## About
-CyberShelf is an innovative online storefront that revolutionizes the way customers shop for their favorite products. With CyberShelf, users can seamlessly browse a vast array of high-quality products. CyberShelf offers a user-friendly, one-stop shopping experience, making it convenient for customers to discover and purchase products online.
-With CyberShelf, there is no need for users to login before browsing through our inventory. Customers are even able to add products to their cart before being asked to create an account so that they can view the status of their order.
-CyberShelf also enables small businesses to grow by providing the opportunity for everyone to sell products. Customers have the option to leave a rating for the vendor which they purchased from, as well as the product that they acquired, after their order is complete. Having an honest review system enables customers to make purchaes from only the most reputable of vendors, and vendors to make informed business decisions based off of customer feedback.
+CyberShelf is an innovative online storefront that revolutionizes the way customers shop for their favorite products. With CyberShelf, users can seamlessly browse a vast array of high-quality products. CyberShelf offers a user-friendly, one-stop shopping experience, making it convenient for customers to discover and purchase products online. With CyberShelf, there is no need for users to login before browsing through our inventory. Customers are even able to add products to their cart before being asked to create an account so that they can view the status of their order.
 
 ## Contributors
 - Celia Cameron
