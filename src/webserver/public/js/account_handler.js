@@ -3,7 +3,7 @@ $(document).on("click", "#account-button", (e) => {
     url: "/account",
     method: "GET",
     success: (data) => {
-      $("main").replaceWith(data.template);
+      $("main").html(data.template);
       $("#edit-fullname").val(data.name);
       $("#edit-email").val(data.email);
       $("#edit-password").val(data.password);
@@ -32,14 +32,15 @@ $(document).on("change", "#edit-fullname", (e) => {
         success: (info) => {
           $("#account-button").html(info.name);
           $("#edit-fullname").val(info.name);
+          createToastNotification(true, "Successfully updated name");
         },
         error: (err) => {
-          createToastNotification("error", "Failed to update UI");
+          // Failed to update value(s) of field(s)
         },
       });
     },
     error: (err) => {
-      createToastNotification("error", "Failed to update account information");
+      createToastNotification(false, "Failed to update account information");
     },
   });
 });
@@ -61,14 +62,15 @@ $(document).on("change", "#edit-email", (e) => {
         },
         success: (info) => {
           $("#edit-email").val(info.email);
+          createToastNotification(true, "Successfully updated email");
         },
         error: (err) => {
-          createToastNotification("error", "Failed to update UI");
+          
         },
       });
     },
     error: (err) => {
-      createToastNotification("error", "Failed to update account information");
+      createToastNotification(false, "Failed to update account information");
     },
   });
 });
@@ -90,9 +92,10 @@ $(document).on("change", "#edit-password", (e) => {
         },
         success: (info) => {
           $("#edit-password").val("**************");
+          createToastNotification(true, "Successfully updated password");
         },
         error: (err) => {
-          createToastNotification("error", "Failed to update UI");
+          // createToastNotification("error", "Failed to update UI");
         },
       });
     },

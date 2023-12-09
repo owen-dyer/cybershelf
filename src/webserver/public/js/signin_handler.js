@@ -1,6 +1,6 @@
 // TODO: Need to create some kind of session/something so that if a page refresh occurs state is maintained
 
-// Handler for all client-side logic related to loggin in
+// Handler for all client-side logic related to loggin in 
 const signInHandler = (fields) => {
   const onSuccess = (successResponse) => {
     // Here we make a request to the webserver id token verification endpoint which will return data to update the UI
@@ -19,7 +19,7 @@ const signInHandler = (fields) => {
         $("#show-register-form").toggleClass("hidden", true);
         getCategories();
         // Need to figure this out since name isn't being sent right now due to rendering
-        createToastNotification("success", `Welcome, ${data.name}`);
+        createToastNotification(true, `Welcome, ${data.name}`);
       },
       error: (err) => {
         onError(err);
