@@ -20,19 +20,19 @@ CyberShelf also enables small businesses to grow by providing the opportunity fo
 
 ## Contributors
 - Celia Cameron
-    - GitHub Username: ceca12
+    - GitHub Username: @ceca12
     - Email: <ceca8169@colorado.edu>
 - Owen Dyer
-    - GitHub Username: owen-dyer
+    - GitHub Username: @owen-dyer
     - Email: <owen.dyer@colorado.edu>
 - Jordan Okada
-    - GitHub Username: jordanokada
+    - GitHub Username: @jordanokada
     - Email: <jook4324@colorado.edu>
 - Leo Tellez
-    - GitHub Username: leteg3n
+    - GitHub Username: @leteg3n
     - Email: <lete1842@colorado.edu>
 - Ashton Wilbern
-    - GitHub Username: awilbern52
+    - GitHub Username: @awilbern52
     - Email: <aswi7205@colorado.edu>
  
 ## Technology Stack
