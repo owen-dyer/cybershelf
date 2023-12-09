@@ -1,5 +1,7 @@
-<!-- ![CyberShelf]() Need to add this in after pushing to GitHub so the file gets linked correctly -->
 # CyberShelf
+
+![image](https://github.com/owen-dyer/cybershelf/assets/95600646/bb4b9c9b-13a3-451f-8e7b-e67217ac27e8)
+
 
 ## Table of Contents
 - [About](#about)
@@ -98,4 +100,4 @@ Now the application should start correctly. If it does, you will see the followi
 ## Running tests
 - Tests will run automatically each time the application starts
 
-## Deployed Application: [CyberShelf](http://recitation-11-team-06.eastus.cloudapp.azure.com/)
+## Deployed Application: [CyberShelf](http://recitation-11-team-06.eastus.cloudapp.azure.com/){:target="_blank"}
