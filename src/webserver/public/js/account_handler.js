@@ -3,7 +3,7 @@ $(document).on("click", "#account-button", (e) => {
     url: "/account",
     method: "GET",
     success: (data) => {
-      $("main").replaceWith(data.template);
+      $("main").html(data.template);
       $("#edit-fullname").val(data.name);
       $("#edit-email").val(data.email);
       $("#edit-password").val(data.password);
@@ -32,25 +32,40 @@ $(document).on("change", "#edit-fullname", (e) => {
         success: (info) => {
           $("#account-button").html(info.name);
           $("#edit-fullname").val(info.name);
+          createToastNotification(true, "Successfully updated name");
         },
         error: (err) => {
-          createToastNotification("error", "Failed to update UI");
+          // Failed to update value(s) of field(s)
         },
       });
     },
     error: (err) => {
-      createToastNotification("error", "Failed to update account information");
+      createToastNotification(false, err.responseJSON.error);
     },
   });
 });
 
+// /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 $(document).on("change", "#edit-email", (e) => {
   const target = e.target;
-  const field = $(target).serialize();
+  const field = $(target).serializeArray().at(0);
+
+  // Credit: https://emailregex.com/index.html
+  const emailRegex =
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,5})*$/;
+
+  // Check if the email is valid
+  if (!emailRegex.test(field.value)) {
+    createToastNotification(false, `${field.value} is not a valid email`);
+    return;
+  }
+
   $.ajax({
     url: "/api/account/edit",
     method: "POST",
-    data: field,
+    data: {
+      email: field.value,
+    },
     dataType: "json",
     success: (data) => {
       $.ajax({
@@ -61,14 +76,13 @@ $(document).on("change", "#edit-email", (e) => {
         },
         success: (info) => {
           $("#edit-email").val(info.email);
+          createToastNotification(true, "Successfully updated email");
         },
-        error: (err) => {
-          createToastNotification("error", "Failed to update UI");
-        },
+        error: (err) => {},
       });
     },
     error: (err) => {
-      createToastNotification("error", "Failed to update account information");
+      createToastNotification(false, err.responseJSON.error);
     },
   });
 });
@@ -90,14 +104,13 @@ $(document).on("change", "#edit-password", (e) => {
         },
         success: (info) => {
           $("#edit-password").val("**************");
+          createToastNotification(true, "Successfully updated password");
         },
-        error: (err) => {
-          createToastNotification("error", "Failed to update UI");
-        },
+        error: (err) => {},
       });
     },
     error: (err) => {
-      createToastNotification("error", "Failed to update account information");
+      createToastNotification(false, err.responseJSON.error);
     },
   });
 });

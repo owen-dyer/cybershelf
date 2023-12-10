@@ -36,10 +36,14 @@
             class="block text-sm font-medium leading-6 text-gray-900"
             >Password</label
           >
+          <!-- NOTE: Since we don't have the functionality to send emails, this is not functional -->
           <div class="text-sm">
-            <a href="#" class="font-semibold text-blue-600 hover:text-blue-500"
-              >Forgot password?</a
+            <button
+              type="button"
+              class="font-semibold text-blue-600 hover:text-blue-500"
             >
+              Forgot Password?
+            </button>
           </div>
         </div>
         <div class="mt-2 flex items-center relative">
@@ -90,12 +94,13 @@
       </div>
 
       <div class="mt-2 flex items-center gap-x-2">
-        <input
+        <!-- TODO: Implement stay sign in functionality -->
+        <!-- <input
           type="checkbox"
           name="remember"
           class="rounded-md cursor-pointer text-blue-600"
         />
-        <label class="text-sm">Stay signed in</label>
+        <label class="text-sm">Stay signed in</label> -->
       </div>
 
       <div class="relative">
@@ -106,10 +111,7 @@
         >
           Sign in
         </button>
-        <p
-          id="signin-form-info-widget"
-          class="absolute top-full hidden"
-        ></p>
+        <p id="signin-form-info-widget" class="absolute top-full hidden"></p>
       </div>
     </form>
 

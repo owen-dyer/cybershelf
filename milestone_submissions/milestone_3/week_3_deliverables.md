@@ -1,4 +1,4 @@
-# Release Notes as of 11/27/2023
+# Release Notes for 11/27/2023
 
 - Login functionality
 - Registration functionality

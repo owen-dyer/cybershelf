@@ -3,14 +3,14 @@ const viewCartHandler = () => {
     url: "/api/cart",
     method: "GET",
     success: (data) => {
-      const ids = data.cart.items.map((item) => item.listing_id);
+      const ids = data.items.map((item) => item.listing_id);
       getListingById(ids, (listings) => {
         const cart = listings.listings.map((listing, i) =>
-          Object.assign({}, listing, data.cart.items.at(i))
+          Object.assign({}, listing, data.items.at(i))
         );
         renderCart({
           items: cart,
-          total_price: data.cart.total_price,
+          total_price: data.total_price,
         });
       });
     },
@@ -34,7 +34,7 @@ const addToCartHandler = (listing_id) => {
       },
       error: (err) => {
         // TODO: Add custom error handling on the client
-        createToastNotification(false, "Failed to add to cart");
+        createToastNotification(false, err.responseJSON.message);
       },
     });
   });
@@ -51,15 +51,32 @@ const removeFromCartHandler = (fields) => {
       },
       dataType: "json",
       success: (data) => {
-        $(`#cart-product-card-${data.listing_id}`).remove();
-        $("#cart-total-price").text(`$${data.total_price}`);
+        viewCartHandler();
         createToastNotification(true, data.message);
       },
       error: (err) => {
         // TODO: Add custom error handling on the client
-        createToastNotification(false, err.error);
+        createToastNotification(false, err.responseJSON.error);
       },
     });
+  });
+};
+
+const updateQuantityHandler = (listingId, quantity) => {
+  $.ajax({
+    url: "/api/cart/update",
+    method: "PUT",
+    data: {
+      listing_id: listingId,
+      quantity: quantity,
+    },
+    dataType: "json",
+    success: (data) => {
+      viewCartHandler();
+    },
+    error: (err) => {
+      createToastNotification(false, err.responseJSON.error);
+    },
   });
 };
 
@@ -85,14 +102,27 @@ const renderCart = (cart) => {
 
 $(document).on("click", "[id*='add-to-cart']", (e) => {
   const target = e.target;
-  const listingId = e.target.id.split("-").at(3);
+  const listingId = target.id.split("-").at(3);
   addToCartHandler(listingId);
+});
+
+$(document).on("change", "[id*='item-quantity']", (e) => {
+  const target = e.target;
+  const listingId = target.id.split("-").at(2);
+  const quantity = $(target).serializeArray().at(0).value;
+  if (parseInt(quantity) === 0) {
+    removeFromCartHandler(listingId);
+  } else if (quantity < 0) {
+    createToastNotification(false, "Please specify a valid quantity");
+  } else {
+    updateQuantityHandler(listingId, quantity);
+  }
 });
 
 $(document).on("click", "[id*='remove-from-cart']", (e) => {
   const target = e.target;
-  const productId = e.target.id.split("-").at(3);
-  removeFromCartHandler(productId);
+  const listingId = target.id.split("-").at(3);
+  removeFromCartHandler(listingId);
 });
 
 $(document).on("click", "#cart-button", (e) => {

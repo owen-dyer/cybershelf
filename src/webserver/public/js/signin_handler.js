@@ -16,10 +16,9 @@ const signInHandler = (fields) => {
         // The endpoint re-renders some UI components since the UI for authenticated users is slightly different
         // than that of non-authenticated users and we inject those changes into the page
         $("body header").replaceWith(data.template);
-        $("#show-register-form").toggleClass("hidden", true);
         getCategories();
-        // Need to figure this out since name isn't being sent right now due to rendering
-        createToastNotification("success", `Welcome, ${data.name}`);
+        $("#show-register-form").toggleClass("hidden", true);
+        createToastNotification(true, `Welcome, ${data.name}`);
       },
       error: (err) => {
         onError(err);
@@ -28,9 +27,12 @@ const signInHandler = (fields) => {
   };
 
   const onError = (errorResponse) => {
-    // createToastNotification("error", "Failed to sign in");
     $("#signin-form-info-widget")
-      .text(errorResponse.responseJSON.error)
+      .text(
+        errorResponse.status >= 500
+          ? `HTTP ${errorResponse.status}: ${errorResponse.statusText}`
+          : errorResponse.responseJSON.error
+      )
       .toggleClass("hidden", false)
       .toggleClass("text-red-500", true);
   };
@@ -44,7 +46,6 @@ const signInHandler = (fields) => {
       onSuccess(data);
     },
     error: (err) => {
-      // TODO: Show toast notification with error message (filtered by the backend)
       onError(err);
     },
   });

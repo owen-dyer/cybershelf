@@ -2,18 +2,16 @@ const signOutHandler = () => {
   const onSuccess = (successResponse) => {
     $("body").html(successResponse.template);
     getCategories();
-    getFeaturedProducts();
-    $("#show-register-form").toggleClass("hidden", false);
+    getFeaturedListings();
 
-    createToastNotification("success", "Successfully signed out");
+    createToastNotification(true, "Successfully signed out");
   };
 
   const onError = (errorResponse) => {
-    createToastNotification("error", "Failed to sign out");
+    createToastNotification(false, "Failed to sign out");
   };
 
   $.ajax({
-    // FIXME: Want to make this http://api.localhost/signout which would proxy to the webserver just for appearance
     url: "/signout",
     method: "GET",
     success: (data) => {

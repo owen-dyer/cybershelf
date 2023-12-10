@@ -9,8 +9,9 @@ router.use((req, res, next) => {
 
 router.route("/").post((req, res, next) => {
   res.render("inventory/components/cart", {
-    items: req.body.items,
+    items: req.body.items ? req.body.items : [],
     total_price: parseFloat(req.body.total_price).toFixed(2),
+    empty: req.body.items ? null : "Cart is empty",
   });
 });
 

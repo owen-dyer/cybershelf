@@ -1,7 +1,7 @@
 const registrationHandler = (fields) => {
   const onSuccess = (successResponse) => {
     createToastNotification(
-      "success",
+      true,
       `Successfully registered ${successResponse.email}`
     );
     // Bring up the signin form so that the user can sign in after registering
@@ -9,7 +9,14 @@ const registrationHandler = (fields) => {
   };
 
   const onError = (errorResponse) => {
-    createToastNotification("error", "Failed to register account");
+    $("#register-form-info-widget")
+      .text(
+        errorResponse.status >= 500
+          ? `HTTP ${errorResponse.status}: ${errorResponse.statusText}`
+          : errorResponse.responseJSON.error
+      )
+      .toggleClass("hidden", false)
+      .toggleClass("text-red-500", true);
   };
 
   $.ajax({
@@ -39,7 +46,8 @@ $(document).on("submit", "#registration-form", (e) => {
   if (parsed.at(2).split("=").at(1) !== parsed.at(3).split("=").at(1)) {
     $("#register-form-info-widget")
       .text("Passwords do not match")
-      .toggleClass("hidden", false);
+      .toggleClass("hidden", false)
+      .toggleClass("text-red-500", true);
     return;
   }
   registrationHandler(fields);
