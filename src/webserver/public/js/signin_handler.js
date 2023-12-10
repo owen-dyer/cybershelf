@@ -1,6 +1,6 @@
 // TODO: Need to create some kind of session/something so that if a page refresh occurs state is maintained
 
-// Handler for all client-side logic related to loggin in 
+// Handler for all client-side logic related to loggin in
 const signInHandler = (fields) => {
   const onSuccess = (successResponse) => {
     // Here we make a request to the webserver id token verification endpoint which will return data to update the UI
@@ -16,9 +16,8 @@ const signInHandler = (fields) => {
         // The endpoint re-renders some UI components since the UI for authenticated users is slightly different
         // than that of non-authenticated users and we inject those changes into the page
         $("body header").replaceWith(data.template);
-        $("#show-register-form").toggleClass("hidden", true);
         getCategories();
-        // Need to figure this out since name isn't being sent right now due to rendering
+        $("#show-register-form").toggleClass("hidden", true);
         createToastNotification(true, `Welcome, ${data.name}`);
       },
       error: (err) => {
@@ -28,9 +27,12 @@ const signInHandler = (fields) => {
   };
 
   const onError = (errorResponse) => {
-    // createToastNotification("error", "Failed to sign in");
     $("#signin-form-info-widget")
-      .text(errorResponse.responseJSON.error)
+      .text(
+        errorResponse.status >= 500
+          ? `HTTP ${errorResponse.status}: ${errorResponse.statusText}`
+          : errorResponse.responseJSON.error
+      )
       .toggleClass("hidden", false)
       .toggleClass("text-red-500", true);
   };
@@ -44,7 +46,6 @@ const signInHandler = (fields) => {
       onSuccess(data);
     },
     error: (err) => {
-      // TODO: Show toast notification with error message (filtered by the backend)
       onError(err);
     },
   });

@@ -10,9 +10,15 @@ const readCart = async (id_token, callback) => {
         error: "You are not authorized to access this resource",
       });
     }
-    db.one(cart.cartByUserId, decoded.sub)
+    db.oneOrNone(cart.cartByUserId, decoded.sub)
       .then((cart_instance) => {
-        db.many(cart.read, cart_instance.id)
+        if (!cart_instance) {
+          return callback({
+            items: [],
+            total_price: 0,
+          });
+        }
+        db.manyOrNone(cart.read, cart_instance.id)
           .then((cart_items) => {
             callback({
               items: cart_items,
@@ -21,13 +27,13 @@ const readCart = async (id_token, callback) => {
           })
           .catch((err) => {
             callback({
-              error: "Unable to find cart contents",
+              error: "Failed to fetch cart",
             });
           });
       })
       .catch((err) => {
         callback({
-          error: "Unable to find cart associated with user",
+          error: "Failed to find cart",
         });
       });
   });

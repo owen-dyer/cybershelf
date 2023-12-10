@@ -2,6 +2,7 @@ const express = require("express");
 const readCart = require("../app/read_cart");
 const { addToCart } = require("../app/add_to_cart");
 const removeFromCart = require("../app/remove_from_cart");
+const updateItemQuantity = require("../app/update_cart");
 
 const router = express.Router();
 
@@ -14,7 +15,8 @@ router.use((req, res, next) => {
 router.route("/").get((req, res, next) => {
   readCart(req.cookies.id_token, (cart) => {
     res.status(cart.error ? 500 : 200).json({
-      cart: cart,
+      items: cart.items,
+      total_price: cart.items.length ? cart.total_price : 0,
       error: cart.error,
     });
   });
@@ -37,6 +39,21 @@ router.route("/add").post((req, res, next) => {
       data: data,
     });
   });
+});
+
+router.route("/update").put((req, res, next) => {
+  updateItemQuantity(
+    req.cookies.id_token,
+    req.body.listing_id,
+    req.body.quantity,
+    (data) => {
+      res.status(data.error ? 500 : 201).json({
+        item: data.item,
+        total_price: data.total_price,
+        error: data.error,
+      });
+    }
+  );
 });
 
 router.route("/remove").delete((req, res, next) => {

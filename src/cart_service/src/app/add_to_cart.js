@@ -19,23 +19,56 @@ const updateCartTotal = (cart_id, net, callback) => {
 
 // Creating a separate function for this since it will be called in multiple places
 const addCartItem = (cart_id, listing, quantity, callback) => {
-  db.one(cart.add, [
-    cart_id,
-    listing.at(0).id,
-    listing.at(0).price,
-    quantity /* Need to add a quantity picker on the client */,
-  ])
-    .then((cart_item) => {
-      updateCartTotal(cart_id, cart_item.price, (cart) => {
-        callback({
-          item: cart_item,
-          total_price: cart.total_price,
-        });
-      });
+  db.manyOrNone(cart.read, cart_id)
+    .then((cart_items) => {
+      const obj = cart_items.find(
+        (item) => item.listing_id === parseInt(listing.at(0).id)
+      );
+      if (!obj) {
+        db.one(cart.add, [
+          cart_id,
+          listing.at(0).id,
+          listing.at(0).price,
+          quantity /* Need to add a quantity picker on the client */,
+        ])
+          .then((cart_item) => {
+            updateCartTotal(cart_id, cart_item.price, (cart) => {
+              return callback({
+                item: cart_item,
+                total_price: cart.total_price,
+              });
+            });
+          })
+          .catch((err) => {
+            return callback({
+              error: "Failed to add item to cart",
+            });
+          });
+      } else {
+        db.one(cart.updateItemQuantity, [cart_id, listing.at(0).id, quantity])
+          .then((updated_item) => {
+            updateCartTotal(
+              cart_id,
+              quantity * listing.at(0).price,
+              (updated_cart) => {
+                return callback({
+                  item: updated_item,
+                  total_price: updated_cart.total_price,
+                });
+              }
+            );
+          })
+          .catch((err) => {
+            // FIXME: This should be atomic so if one fails then everything else fails also
+            callback({
+              error: "Failed to update item quantity",
+            });
+          });
+      }
     })
     .catch((err) => {
       callback({
-        error: "Failed to add item to cart",
+        error: "Failed to find items",
       });
     });
 };
@@ -55,6 +88,8 @@ const addToCart = async (fields, callback) => {
       .then((cart_instance) => {
         // If a cart already exists then we proceed
         addCartItem(cart_instance.id, fields.listing, 1, (cart_item) => {
+          console.log("Final cart item:");
+          console.log(cart_item);
           callback({
             product: fields.listing,
             quantity: cart_item.item.quantity,

@@ -13,11 +13,11 @@ const removeFromCart = (id_token, listing_info, callback) => {
     }
     db.one(cart.cartByUserId, decoded.sub)
       .then((cart_instance) => {
-        db.none(cart.remove, [cart_instance.id, listing_info.listing_id])
+        db.one(cart.remove, [cart_instance.id, listing_info.listing_id])
           .then((removed_item) => {
             db.one(cart.updateTotalPrice, [
               cart_instance.id,
-              -listing_info.price,
+              -(removed_item.price * removed_item.quantity),
             ])
               .then((updated_price) => {
                 callback({

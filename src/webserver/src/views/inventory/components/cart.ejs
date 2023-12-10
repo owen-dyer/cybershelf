@@ -1,13 +1,16 @@
-<div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+<div class="flex-1 flex-col justify-between overflow-y-auto px-4 py-6 sm:px-6">
   <div class="flex items-start justify-between">
     <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
       Shopping cart
     </h2>
   </div>
 
-  <div class="mt-8">
+  <div>
+    <h2 class="text-lg text-gray-500 font-semibold pt-4 <%- locals.empty ? 'block' : 'hidden' %>">
+      <%= locals.empty %>
+    </h2>
     <div class="flow-root">
-      <ul role="list" class="-my-6 divide-y divide-gray-200">
+      <ul role="list" class="divide-y divide-gray-200">
         <% locals.items.map((item) => { %>
         <li id="cart-product-card-<%- item.id %>" class="flex py-6">
           <div
@@ -30,8 +33,21 @@
               </div>
               <p class="mt-1 text-sm text-gray-500"><%= item.description %></p>
             </div>
-            <div class="flex flex-1 items-end justify-between text-sm">
-              <p class="text-gray-500">Qty <%= item.quantity %></p>
+            <div class="flex flex-1 items-center justify-between text-sm">
+              <div class="flex items-center gap-x-2">
+                <label for="item-quantity-<%- item.id %>" class="text-sm"
+                  >Qty</label
+                >
+                <input
+                  type="number"
+                  id="item-quantity-<%- item.id %>"
+                  name="quantity"
+                  min="1"
+                  max="99"
+                  value="<%- item.quantity %>"
+                  class="border-none rounded-md text-sm px-2 py-0 w-14 focus:border-none focus:ring-0 focus:outline-blue-600"
+                />
+              </div>
 
               <div class="flex">
                 <button

@@ -1,7 +1,6 @@
 const createToastNotification = (status, content) => {
   const popover = document.createElement("div");
   popover.popover = "manual";
-  console.log(status);
 
   popover.classList.add(
     "toast",
@@ -16,9 +15,9 @@ const createToastNotification = (status, content) => {
     "popover-open:py-4",
     "popover-open:flex",
     "popover-open:items-center",
-    "popover-open:justify-center",
+    "popover-open:justify-center"
     // FIXME: This was working previously but now doesn't update the text color
-    `popover-open:${status ? "text-blue-600" : "text-red-500"}`
+    // `popover-open:${status ? "text-blue-600" : "text-red-500"}`
   );
   // In place of the above FIXME
   if (status) {

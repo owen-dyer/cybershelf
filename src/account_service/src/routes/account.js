@@ -19,6 +19,11 @@ router.route("/").get((req, res, next) => {
 // Edit account details
 router.route("/edit").post((req, res, next) => {
   updateAccountInfo(req.cookies.id_token, req.body, (user) => {
+    if (user.error) {
+      return res.status(500).json({
+        error: user.error,
+      });
+    }
     createIdToken(
       {
         id: user.id,

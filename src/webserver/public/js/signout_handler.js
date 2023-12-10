@@ -12,12 +12,9 @@ const signOutHandler = () => {
   };
 
   $.ajax({
-    // FIXME: Want to make this http://api.localhost/signout which would proxy to the webserver just for appearance
     url: "/signout",
     method: "GET",
     success: (data) => {
-      console.log("Successfully signed out");
-      console.log(data);
       onSuccess(data);
     },
     error: (err) => {

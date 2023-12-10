@@ -22,12 +22,17 @@ const add = new PS({
 
 const remove = new PS({
   name: "remove-from-cart",
-  text: `DELETE FROM cart_item WHERE cart_id=($1) AND listing_id=($2);`,
+  text: `DELETE FROM cart_item WHERE cart_id=($1) AND listing_id=($2) RETURNING price, quantity;`,
 });
 
 const updateTotalPrice = new PS({
   name: "update-total-price",
   text: "UPDATE cart SET total_price=total_price+($2) WHERE id=($1) RETURNING total_price;",
+});
+
+const updateItemQuantity = new PS({
+  name: "update-item-quantity",
+  text: "UPDATE cart_item SET quantity=quantity+($3) WHERE cart_id=($1) AND listing_id=($2) RETURNING listing_id, price, quantity;",
 });
 
 module.exports = {
@@ -38,5 +43,6 @@ module.exports = {
     create,
     remove,
     updateTotalPrice,
+    updateItemQuantity,
   },
 };
