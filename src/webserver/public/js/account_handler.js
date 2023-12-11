@@ -45,14 +45,13 @@ $(document).on("change", "#edit-fullname", (e) => {
   });
 });
 
-// /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 $(document).on("change", "#edit-email", (e) => {
   const target = e.target;
   const field = $(target).serializeArray().at(0);
 
   // Credit: https://emailregex.com/index.html
   const emailRegex =
-    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,5})*$/;
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   // Check if the email is valid
   if (!emailRegex.test(field.value)) {

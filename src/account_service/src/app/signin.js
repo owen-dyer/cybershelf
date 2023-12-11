@@ -2,12 +2,10 @@ const { db, QueryResultError, qrec } = require("../database/init");
 const { account } = require("../database/sql");
 const bcrypt = require("bcryptjs");
 
-// Temporary
 const createIdToken = require("./create_id_token");
 
-const signin = async (credentials, callback) => {
-  await db
-    .one(account.signin, credentials.email)
+const signin = (credentials, callback) => {
+  db.one(account.signin, credentials.email)
     .then((user) => {
       bcrypt.compare(
         credentials.password,

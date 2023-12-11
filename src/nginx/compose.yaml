@@ -12,7 +12,7 @@ services:
       - account_service_account_server_network
       - inventory_service_inventory_server_network
       - cart_service_cart_server_network
-      # - order_service_order_server_network
+      - order_service_order_server_network
 
 networks:
   # If a service has never been run, comment out the network here and above under 'networks'
@@ -25,5 +25,5 @@ networks:
     external: true
   cart_service_cart_server_network:
     external: true
-  # order_service_order_server_network:
-  #   external: true
+  order_service_order_server_network:
+    external: true

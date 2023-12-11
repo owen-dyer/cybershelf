@@ -5,9 +5,9 @@ const allCategories = new PS({
   text: `SELECT id, title, description FROM category;`,
 });
 
-const categoriesById = new PS({
+const categoryById = new PS({
   name: "categories-by-id",
-  text: `SELECT id, title, description, image_url FROM product WHERE `,
+  text: `SELECT id, title, description FROM category WHERE id=$1;`,
 });
 
 const allListings = new PS({
@@ -26,17 +26,23 @@ const listingsByFilter = new PS({
 });
 
 const listingsById = new PS({
-  name: " listings-by-id",
+  name: "listings-by-id",
   text: `SELECT id, title, description, image_url, price FROM listing WHERE id=ANY($1);`,
+});
+
+const listingsByCategory = new PS({
+  name: "listings-by-category",
+  text: `SELECT id, title, description, image_url, price FROM listing WHERE category_id=$1;`,
 });
 
 module.exports = {
   inventory: {
     allCategories,
-    categoriesById,
+    categoryById,
     allListings,
     featuredListings,
     listingsByFilter,
     listingsById,
+    listingsByCategory,
   },
 };

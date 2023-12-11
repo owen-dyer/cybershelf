@@ -27,6 +27,6 @@ app.get("*", (req, res) => {
 });
 
 // Forgot why I was exporting this... check on later
-app.listen(3000, () => {
+module.exports = app.listen(3000, () => {
   console.log("Account Server is running");
 });

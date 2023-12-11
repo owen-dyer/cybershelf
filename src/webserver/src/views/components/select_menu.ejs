@@ -1,13 +1,96 @@
+<!-- TODO: Make this dynamic rather than having hard-coded select values -->
 <div id="select-container" class="relative w-fit z-50">
   <button id="account-button" class="<%- locals.select_button_style %>">
+    <span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+        />
+      </svg>
+    </span>
     <%= locals.select_button_label %>
   </button>
   <dialog
     id="select-menu"
-    class="absolute rounded-lg px-4 py-1.5 bg-gray-100 open:flex open:flex-col"
+    class="absolute w-full rounded-md px-4 py-4 bg-gray-50 open:flex open:flex-col gap-4 justify-items-center"
   >
-    <button id="cart-button" class="text-sm text-gray-800">Cart</button>
-    <button id="orders-button" class="text-sm text-gray-800">Orders</button>
-    <button id="signout-button" class="text-sm text-gray-800">Sign Out</button>
+    <button
+      id="cart-button"
+      class="text-lg text-gray-900 outline-none flex items-center justify-start gap-x-2 hover:text-gray-600"
+    >
+      <span
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+          />
+        </svg>
+      </span>
+      Cart
+    </button>
+    <button
+      id="orders-button"
+      class="text-lg text-gray-900 outline-none flex items-center justify-start gap-x-2 hover:text-gray-600"
+    >
+      <span
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="w-6 h-6"
+        >
+          <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+          <path
+            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+          ></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+      </span>
+      Orders
+    </button>
+    <button
+      id="signout-button"
+      class="text-lg text-gray-900 outline-none flex items-center justify-start gap-x-2 hover:text-gray-600"
+    >
+      <span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="w-6 h-6"
+        >
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+      </span>
+      Sign Out
+    </button>
   </dialog>
 </div>

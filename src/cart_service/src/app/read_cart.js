@@ -33,7 +33,7 @@ const readCart = async (id_token, callback) => {
       })
       .catch((err) => {
         callback({
-          error: "Failed to find cart",
+          error: "Failed to fetch cart",
         });
       });
   });
