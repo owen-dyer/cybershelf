@@ -57,9 +57,36 @@ const getListingById = (ids, callback) => {
     });
 };
 
+const getListingsByCategory = (category_id, callback) => {
+  db.one(inventory.categoryById, category_id)
+    .then((category) => {
+      console.log(category);
+      db.manyOrNone(inventory.listingsByCategory, category_id)
+        .then((listings) => {
+          console.log(listings);
+          callback({
+            category: category,
+            listings: listings,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          callback({
+            error: err,
+          });
+        });
+    })
+    .catch((err) => {
+      callback({
+        error: err,
+      });
+    });
+};
+
 module.exports = {
   getAllListings,
   getFeaturedListings,
   getListingByFilter,
   getListingById,
+  getListingsByCategory,
 };

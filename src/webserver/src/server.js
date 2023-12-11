@@ -24,10 +24,15 @@ app.use("/static", express.static(path.join(__dirname, "../public")));
 app.use(require("./routes/account"));
 app.use("/inventory", require("./routes/inventory"));
 app.use("/cart", require("./routes/cart"));
+app.use("/orders", require("./routes/order"));
 // TODO: Add to static route
 app.use(
   "/jquery",
   express.static(path.join(__dirname, "../node_modules/jquery/dist/"))
+);
+app.use(
+  "/jqueryui",
+  express.static(path.join(__dirname, "../node_modules/jquery-ui/dist/"))
 );
 
 app.get("*", (req, res) => {

@@ -1,0 +1,232 @@
+<div id="checkout-page" class="px-4 flex flex-col md:flex-row gap-4">
+  <form
+    id="checkout-form"
+    name="checkout"
+    accept="/checkout"
+    method="post"
+    class="md:basis-1/2 px-4"
+  >
+    <div class="gx uc cxm">
+      <section aria-labelledby="contact-info-heading">
+        <h2
+          id="contact-info-heading"
+          class="text-xl textgray-900 font-semibold"
+        >
+          Contact information
+        </h2>
+        <div class="mt-6">
+          <label for="email-address" class="lu awa awe axt"
+            >Email address</label
+          >
+          <div class="mt-1">
+            <input
+              type="email"
+              id="email-address"
+              name="email-address"
+              autocomplete="email"
+              class="w-full rounded-md"
+              required
+            />
+          </div>
+        </div>
+      </section>
+      <section aria-labelledby="payment-heading" class="mt-10">
+        <h2 id="payment-heading" class="text-xl textgray-900 font-semibold">
+          Payment details
+        </h2>
+        <div class="mt-6 flex flex-col gap-y-4 gap-x-6">
+          <div class="et buh">
+            <label for="name-on-card" class="lu awa awe axt"
+              >Name on card</label
+            >
+            <div class="mt-1">
+              <input
+                type="text"
+                id="name-on-card"
+                name="name-on-card"
+                autocomplete="cc-name"
+                class="w-full rounded-md"
+                required
+              />
+            </div>
+          </div>
+          <div class="et buh">
+            <label for="card-number" class="lu awa awe axt">Card number</label>
+            <div class="mt-1">
+              <input
+                type="text"
+                id="card-number"
+                name="card-number"
+                autocomplete="cc-number"
+                class="w-full rounded-md"
+                required
+              />
+            </div>
+          </div>
+          <div class="w-full flex gap-x-4">
+            <div class="basis-3/4">
+              <label for="expiration-date" class="lu awa awe axt"
+                >Expiration date (MM/YY)</label
+              >
+              <div class="mt-1">
+                <input
+                  type="text"
+                  name="expiration-date"
+                  id="expiration-date"
+                  autocomplete="cc-exp"
+                  class="w-full rounded-md"
+                  required
+                />
+              </div>
+            </div>
+            <div class="basis-1/4">
+              <label for="cvc" class="lu awa awe axt">CVC</label>
+              <div class="mt-1">
+                <input
+                  type="text"
+                  name="cvc"
+                  id="cvc"
+                  autocomplete="csc"
+                  class="w-full rounded-md"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section aria-labelledby="shipping-heading" class="mt-10">
+        <h2 id="shipping-heading" class="text-xl textgray-900 font-semibold">
+          Shipping address
+        </h2>
+        <div class="mt-6 flex flex-col gap-y-4 gap-x-6">
+          <div class="bug">
+            <label for="company" class="lu awa awe axt">Company</label>
+            <div class="mt-1">
+              <input
+                type="text"
+                id="company"
+                name="company"
+                class="w-full rounded-md"
+              />
+            </div>
+          </div>
+          <div class="bug">
+            <label for="address" class="lu awa awe axt">Address</label>
+            <div class="mt-1">
+              <input
+                type="text"
+                id="address"
+                name="address"
+                autocomplete="street-address"
+                class="w-full rounded-md"
+                required
+              />
+            </div>
+          </div>
+          <div class="bug">
+            <label for="apartment" class="lu awa awe axt"
+              >Apartment, suite, etc.</label
+            >
+            <div class="mt-1">
+              <input
+                type="text"
+                id="apartment"
+                name="apartment"
+                class="w-full rounded-md"
+              />
+            </div>
+          </div>
+          <div>
+            <label for="city" class="lu awa awe axt">City</label>
+            <div class="mt-1">
+              <input
+                type="text"
+                id="city"
+                name="city"
+                autocomplete="address-level2"
+                class="w-full rounded-md"
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label for="region" class="lu awa awe axt">State / Province</label>
+            <div class="mt-1">
+              <input
+                type="text"
+                id="region"
+                name="region"
+                autocomplete="address-level1"
+                class="w-full rounded-md"
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label for="postal-code" class="lu awa awe axt">Postal code</label>
+            <div class="mt-1">
+              <input
+                type="text"
+                id="postal-code"
+                name="postal-code"
+                autocomplete="postal-code"
+                class="w-full rounded-md"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section aria-labelledby="billing-heading" class="mt-10">
+        <h2 id="billing-heading" class="text-xl textgray-900 font-semibold">
+          Billing information
+        </h2>
+        <div class="mt-6 flex items-center gap-x-2">
+          <input
+            id="same-as-shipping"
+            name="same-as-shipping"
+            type="checkbox"
+            class="w-4 h-4 rounded-md hover:bg-blue-200 checked:bg-blue-600"
+            checked=""
+          />
+          <div class="jt">
+            <label for="same-as-shipping" class="awa awe axv"
+              >Same as shipping information</label
+            >
+          </div>
+        </div>
+      </section>
+      <div class="mt-10">
+        <button
+          type="submit"
+          class="bg-blue-600 hover:bg-blue-500 text-gray-100 text-lg font-semibold rounded-md px-6 py-3"
+        >
+          Place Order
+        </button>
+      </div>
+    </div>
+  </form>
+  <div
+    class="md:basis-1/2 bg-gray-50 px-6 py-10 flex flex-col overflow-y-auto max-h-[calc(100vh-132px)]"
+  >
+    <div>
+      <h2 class="text-xl font-semibold">Order summary</h2>
+    </div>
+    <%- include('../components/cart_items') %>
+    <div class="pt-2 border-t flex flex-col gap-y-2">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-medium">Subtotal</h3>
+        <h3 class="text-lg">$<%= locals.total_price %></h3>
+      </div>
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-medium">Shipping</h3>
+        <h3 class="text-lg">Free</h3>
+      </div>
+      <div class="pt-2 border-t flex items-center justify-between">
+        <h3 class="text-lg font-medium">Subtotal</h3>
+        <h3 class="text-lg">$<%= locals.total_price %></h3>
+      </div>
+    </div>
+  </div>
+</div>

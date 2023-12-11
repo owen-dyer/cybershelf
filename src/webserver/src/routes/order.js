@@ -4,15 +4,13 @@ const { app } = require("../app/app");
 const router = express.Router();
 
 router.use((req, res, next) => {
+  res.locals.orders = req.body.orders ? req.body.orders : [];
+  res.locals.noOrders = req.body.orders ? false : true;
   next();
 });
 
-router.route("/").get((req, res, next) => {
-  res.status(200).json({
-    message: "Render all orders that the user has placed",
-  });
+router.route("/").post((req, res, next) => {
+  res.render("orders/orders");
 });
-
-// TODO: Add other routes related to orders (checkout/order details/etc.)
 
 module.exports = router;

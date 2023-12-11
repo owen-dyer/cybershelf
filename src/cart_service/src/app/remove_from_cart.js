@@ -46,4 +46,29 @@ const removeFromCart = (id_token, listing_info, callback) => {
   });
 };
 
-module.exports = removeFromCart;
+const clearCart = (id_token, callback) => {
+  jwt.verify(id_token, getPublicKeys(), (err, decoded) => {
+    if (err) {
+      return callback({
+        error: "You are not authorized to access this resource",
+      });
+    }
+
+    db.none(cart.clear, decoded.sub)
+      .then(() => {
+        callback({
+          message: "Cart cleared",
+        });
+      })
+      .catch((err) => {
+        callback({
+          error: err,
+        });
+      });
+  });
+};
+
+module.exports = {
+  removeFromCart,
+  clearCart,
+};

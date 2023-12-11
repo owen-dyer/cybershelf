@@ -20,6 +20,9 @@ module.exports = {
       inset: {
         unset: "unset",
       },
+      minWidth: {
+        "2/3": "66.66%",
+      },
     },
   },
   corePlugins: {

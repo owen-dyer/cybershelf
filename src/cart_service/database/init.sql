@@ -12,7 +12,7 @@ CREATE TABLE
     cart_item (
         id SERIAL PRIMARY KEY,
         cart_id INTEGER,
-        CONSTRAINT item_cart_id FOREIGN KEY (cart_id) REFERENCES cart (id),
+        CONSTRAINT item_cart_id FOREIGN KEY (cart_id) REFERENCES cart (id) ON DELETE CASCADE,
         -- Products aren't stored in this database so not a "foreign key"
         listing_id INTEGER NOT NULL,
         price REAL,

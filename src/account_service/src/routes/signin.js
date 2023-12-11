@@ -8,6 +8,12 @@ router.use((req, res, next) => {
   next();
 });
 
+/*
+NOTE:
+To sign in you need:
+- email
+- password
+*/
 router.route("/").post((req, res, next) => {
   signin(req.body, (status) => {
     res.status(status.success ? 200 : 401).json({

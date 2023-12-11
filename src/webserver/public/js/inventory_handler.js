@@ -51,18 +51,16 @@ const renderListings = (listings, page_title, new_page) => {
       page: page_title,
       listings,
     },
-    dataType: "json",
     success: (template) => {
       // console.log(template);
+      if (new_page) {
+        $("main").html(template);
+      } else {
+        $("#home-hero-section").after(template);
+      }
     },
     error: (err) => {
-      // FIXME: Response status code is 200 but an error for some reason
-      // this works for now though
-      if (new_page) {
-        $("main").html(err.responseText);
-      } else {
-        $("#home-hero-section").after(err.responseText);
-      }
+      createToastNotification(false, err.responseJSON.error);
     },
   });
 };
@@ -83,7 +81,29 @@ const getListingById = (ids, callback) => {
       callback(data);
     },
     error: (err) => {
-      console.log(err.responseText);
+      createToastNotification(false, err.responseJSON.error);
+    },
+  });
+};
+
+const getListingsByCategory = (category_id) => {
+  $.ajax({
+    url: "/api/listings/by_category",
+    method: "POST",
+    data: {
+      category_id: category_id,
+    },
+    dataType: "json",
+    success: (data) => {
+      // TODO: Add category title as page title
+      renderListings(
+        data.listings,
+        `Listings matching '${data.category.title}'`,
+        true
+      );
+    },
+    error: (err) => {
+      createToastNotification(false, err.responseJSON.error);
     },
   });
 };
@@ -114,4 +134,10 @@ $(document).on("click", "[id*='listing-overview']", (e) => {
 
 $(document).on("click", "#browse-products-button", (e) => {
   getListings();
+});
+
+$(document).on("click", "[id*='category-button']", (e) => {
+  const target = e.target;
+  const categoryId = target.id.split("-").at(2);
+  getListingsByCategory(categoryId);
 });

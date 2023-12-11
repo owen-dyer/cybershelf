@@ -1,7 +1,7 @@
 const express = require("express");
 const readCart = require("../app/read_cart");
 const { addToCart } = require("../app/add_to_cart");
-const removeFromCart = require("../app/remove_from_cart");
+const { removeFromCart, clearCart } = require("../app/remove_from_cart");
 const updateItemQuantity = require("../app/update_cart");
 
 const router = express.Router();
@@ -27,7 +27,7 @@ router.route("/add").post((req, res, next) => {
   const id_token = req.cookies.id_token;
   if (!id_token) {
     return res.status(401).json({
-      message: "Please sign in to add items to your cart",
+      error: "Please sign in to add items to your cart",
     });
   }
   const info = {
@@ -58,6 +58,12 @@ router.route("/update").put((req, res, next) => {
 
 router.route("/remove").delete((req, res, next) => {
   removeFromCart(req.cookies.id_token, req.body, (data) => {
+    res.status(data.error ? 500 : 201).json(data);
+  });
+});
+
+router.route("/clear").delete((req, res, next) => {
+  clearCart(req.cookies.id_token, (data) => {
     res.status(data.error ? 500 : 201).json(data);
   });
 });

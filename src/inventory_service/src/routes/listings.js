@@ -4,6 +4,7 @@ const {
   getFeaturedListings,
   getListingByFilter,
   getListingById,
+  getListingsByCategory,
 } = require("../app/listings");
 
 const router = express.Router();
@@ -42,6 +43,14 @@ router.route("/by_id").post((req, res, next) => {
       listings: obj.listings,
       error: obj.error,
     });
+  });
+});
+
+router.route("/by_category").post((req, res, next) => {
+  getListingsByCategory(req.body.category_id, (obj) => {
+    console.log("Object:");
+    console.log(obj);
+    res.status(obj.error ? 500 : 200).json(obj);
   });
 });
 

@@ -1,4 +1,4 @@
-const viewCartHandler = () => {
+const getCart = (callback) => {
   $.ajax({
     url: "/api/cart",
     method: "GET",
@@ -8,16 +8,26 @@ const viewCartHandler = () => {
         const cart = listings.listings.map((listing, i) =>
           Object.assign({}, listing, data.items.at(i))
         );
-        renderCart({
+        callback({
           items: cart,
           total_price: data.total_price,
         });
       });
     },
+  });
+};
+
+const viewCartHandler = () => {
+  $.ajax({
+    url: "/api/cart",
+    method: "GET",
+    success: (data) => {
+      getCart((data) => {
+        renderCart(data);
+      });
+    },
     error: (err) => {
-      // TODO: Add custom error handling on the client
-      createToastNotification(false, "Cart is empty");
-      // Display empty cart page with error message or something like that
+      createToastNotification(false, err.responseJSON.error);
     },
   });
 };
@@ -34,7 +44,7 @@ const addToCartHandler = (listing_id) => {
       },
       error: (err) => {
         // TODO: Add custom error handling on the client
-        createToastNotification(false, err.responseJSON.message);
+        createToastNotification(false, err.responseJSON.error);
       },
     });
   });
@@ -51,7 +61,12 @@ const removeFromCartHandler = (fields) => {
       },
       dataType: "json",
       success: (data) => {
-        viewCartHandler();
+        if ($.contains(document.body, $("#checkout-page").get(0))) {
+          checkoutHandler();
+        } else {
+          viewCartHandler();
+        }
+
         createToastNotification(true, data.message);
       },
       error: (err) => {
@@ -59,6 +74,19 @@ const removeFromCartHandler = (fields) => {
         createToastNotification(false, err.responseJSON.error);
       },
     });
+  });
+};
+
+const clearCartHandler = () => {
+  $.ajax({
+    url: "/api/cart/clear",
+    method: "DELETE",
+    success: () => {
+      // Don't need to do anything
+    },
+    error: (err) => {
+      // // Don't need to do anything
+    },
   });
 };
 
@@ -72,6 +100,9 @@ const updateQuantityHandler = (listingId, quantity) => {
     },
     dataType: "json",
     success: (data) => {
+      if ($.contains(document.body, $("#checkout-page").get(0))) {
+        return checkoutHandler();
+      }
       viewCartHandler();
     },
     error: (err) => {
@@ -88,35 +119,70 @@ const renderCart = (cart) => {
       items: cart.items,
       total_price: cart.total_price,
     },
-    dataType: "json",
     success: (cart) => {
-      // For some reason it won't this lol
       $("main").html(cart);
+      $("[id*='item-quantity']").spinner({
+        min: 0,
+        max: 99,
+      });
     },
     error: (err) => {
-      // Returns 200 but an error?
-      $("main").html(err.responseText);
+      createToastNotification(false, err.responseJSON.error);
     },
   });
 };
+
+const checkoutHandler = () => {
+  $.ajax({
+    url: "/api/cart",
+    method: "GET",
+    success: (data) => {
+      const ids = data.items.map((item) => item.listing_id);
+      // NOTE: This is buggy but it works
+      if (!ids.length) {
+        return createToastNotification(
+          false,
+          "You cannot checkout with an empty cart"
+        );
+      }
+      getListingById(ids, (listings) => {
+        const cart = listings.listings.map((listing, i) =>
+          Object.assign({}, listing, data.items.at(i))
+        );
+        $.ajax({
+          url: "/cart/checkout",
+          method: "POST",
+          data: {
+            items: cart,
+            total_price: data.total_price,
+          },
+          success: (data) => {
+            $("main").html(data);
+            $("[id*='item-quantity']").spinner({
+              min: 0,
+              max: 99,
+            });
+          },
+          error: (err) => {
+            createToastNotification(false, err.responseJSON.error);
+          },
+        });
+      });
+    },
+    error: (err) => {
+      createToastNotification(false, err.responseJSON.error);
+    },
+  });
+};
+
+$(document).on("click", "#checkout-button", (e) => {
+  checkoutHandler();
+});
 
 $(document).on("click", "[id*='add-to-cart']", (e) => {
   const target = e.target;
   const listingId = target.id.split("-").at(3);
   addToCartHandler(listingId);
-});
-
-$(document).on("change", "[id*='item-quantity']", (e) => {
-  const target = e.target;
-  const listingId = target.id.split("-").at(2);
-  const quantity = $(target).serializeArray().at(0).value;
-  if (parseInt(quantity) === 0) {
-    removeFromCartHandler(listingId);
-  } else if (quantity < 0) {
-    createToastNotification(false, "Please specify a valid quantity");
-  } else {
-    updateQuantityHandler(listingId, quantity);
-  }
 });
 
 $(document).on("click", "[id*='remove-from-cart']", (e) => {
@@ -129,4 +195,20 @@ $(document).on("click", "#cart-button", (e) => {
   viewCartHandler();
 });
 
-// TODO: Add UI for add to cart/remove from cart
+$(document).on("spinchange", "[id*='item-quantity']", (e) => {
+  const target = e.target;
+  const listingId = target.id.split("-").at(2);
+
+  if (!$(target).spinner("isValid")) {
+    createToastNotification(false, "Please specify a valid quantity");
+    return;
+  }
+
+  const quantity = $(target).spinner("value");
+
+  if (parseInt(quantity) === 0) {
+    return removeFromCartHandler(listingId);
+  }
+
+  updateQuantityHandler(listingId, quantity);
+});

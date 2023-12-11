@@ -13,7 +13,7 @@ CREATE TABLE
         image_url VARCHAR(500),
         featured BOOLEAN DEFAULT FALSE,
         price REAL NOT NULL,
-        category_id INTEGER,
+        category_id INTEGER NOT NULL,
         CONSTRAINT listings_categorys FOREIGN KEY (category_id) REFERENCES category (id),
         posted_at TIMESTAMP,
         updated_at TIMESTAMP
