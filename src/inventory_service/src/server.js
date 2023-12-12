@@ -19,6 +19,6 @@ app.get("*", (req, res) => {
   res.status(404);
 });
 
-app.listen(3000, () => {
+module.exports = app.listen(3000, () => {
   console.log("Inventory Server is running");
 });

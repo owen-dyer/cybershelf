@@ -15,11 +15,11 @@ const getAllCategories = (callback) => {
     });
 };
 
-const getCategoriesById = (category_ids, callback) => {
-  db.manyOrNone(inventory.categoriesById, [category_ids])
-    .then((categories) => {
+const getCategoryById = (category_id, callback) => {
+  db.manyOrNone(inventory.categoryById, category_id)
+    .then((category) => {
       callback({
-        categories: categories,
+        category: category,
       });
     })
     .catch((err) => {
@@ -31,5 +31,5 @@ const getCategoriesById = (category_ids, callback) => {
 
 module.exports = {
   getAllCategories,
-  getCategoriesById,
+  getCategoryById,
 };
