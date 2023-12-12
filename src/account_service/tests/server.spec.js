@@ -25,7 +25,20 @@ describe("Account Server", () => {
     expect(res.body).to.have.property("email");
   });
 
-  // Sample test case given to test /api/signin endpoint.
+  // Negative test case for registering
+  it("negative : /api/register", async () => {
+    const res = await chai.request(server).post("/api/register").send({
+      name: "John Doe",
+      email: "john@doe.com",
+      password: "password",
+      confirmpassword: "pass",
+    });
+
+    expect(res).to.have.status(401);
+    expect(res.body).to.be.an("object");
+  });
+
+  // Positive test case for signing in
   it("positive : /api/signin", async () => {
     const res = await chai.request(server).post("/api/signin").send({
       email: "john@doe.com",
@@ -35,5 +48,16 @@ describe("Account Server", () => {
     expect(res).to.have.status(200);
     expect(res.body).to.be.an("object");
     expect(res.body).to.have.property("id_token");
+  });
+
+  // Negative test case for signing in
+  it("negative : /api/signin", async () => {
+    const res = await chai.request(server).post("/api/signin").send({
+      email: "john",
+      password: "password",
+    });
+
+    expect(res).to.have.status(401);
+    expect(res.body).to.be.an("object");
   });
 });
