@@ -5,8 +5,6 @@ const viewOrdersHandler = () => {
     method: "GET",
     success: (data) => {
       // Credit for flat method: https://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays
-      console.log("Orders:");
-      console.log(data);
       const ids = data.orders
         .map((order) => {
           return order.items.map((item) => item.listing_id);

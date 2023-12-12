@@ -6,7 +6,8 @@
   "scripts": {
     "prestart": "npm install",
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/**/*.js",
+    "testandrun": "npm run prestart && npm run test && npm start"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,9 @@
     "pg-promise": "^11.5.4"
   },
   "devDependencies": {
+    "chai": "^4.3.10",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.2.0",
     "nodemon": "^3.0.1"
   }
 }
